@@ -491,8 +491,6 @@ function DirectoryView() {
         fileInputRef={fileInputRef}
         handleFileSelect={handleFileSelect}
         refreshKey={storageRefreshKey}
-        viewMode={viewMode}
-        toggleViewMode={toggleViewMode}
         // Disable if the user doesn't have access
         disabled={
           errorMessage ===
@@ -502,6 +500,38 @@ function DirectoryView() {
 
       {/* Breadcrumb Navigation */}
       <Breadcrumb items={breadcrumb} rootDirId={rootDirId} />
+
+      {/* View Mode Toggle - Below Breadcrumb */}
+      <div className="view-toggle-bar">
+        <span className="files-count">
+          {combinedItems.length} {combinedItems.length === 1 ? 'item' : 'items'}
+        </span>
+        <div className="view-toggle">
+          <button
+            className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
+            title="List View"
+            onClick={() => toggleViewMode('list')}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+          <button
+            className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
+            title="Grid View"
+            onClick={() => toggleViewMode('grid')}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="3" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/>
+              <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+          </button>
+        </div>
+      </div>
 
       {/* Create Directory Modal */}
       {showCreateDirModal && (
