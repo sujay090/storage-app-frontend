@@ -6,6 +6,7 @@ function DirectoryList({
   activeContextMenu,
   contextMenuPos,
   handleContextMenu,
+  closeContextMenu,
   getFileIcon,
   isUploading,
   progressMap,
@@ -15,22 +16,24 @@ function DirectoryList({
   openRenameModal,
   openDetailsModal,
   BASE_URL,
+  viewMode = 'list',
 }) {
   return (
-    <div className="directory-list">
+    <div className={`directory-list ${viewMode === 'grid' ? 'grid-view' : 'list-view'}`}>
       {items.map((item) => {
-        const itemId = item._id || item.id; // ✅ FIX
+        const itemId = item._id || item.id;
         const uploadProgress = progressMap[itemId] || 0;
 
         return (
           <DirectoryItem
-            key={itemId}               // ✅ FIX
+            key={itemId}
             item={item}
-            itemId={itemId}            // ✅ pass explicitly (recommended)
+            itemId={itemId}
             handleRowClick={handleRowClick}
             activeContextMenu={activeContextMenu}
             contextMenuPos={contextMenuPos}
             handleContextMenu={handleContextMenu}
+            closeContextMenu={closeContextMenu}
             getFileIcon={getFileIcon}
             isUploading={isUploading}
             uploadProgress={uploadProgress}
@@ -40,6 +43,7 @@ function DirectoryList({
             openRenameModal={openRenameModal}
             openDetailsModal={openDetailsModal}
             BASE_URL={BASE_URL}
+            viewMode={viewMode}
           />
         );
       })}

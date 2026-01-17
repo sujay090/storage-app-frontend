@@ -6,6 +6,7 @@ import RenameModal from "./components/RenameModal";
 import DetailsModal from "./components/DetailsModel";
 import DirectoryList from "./components/DirectoryList";
 import Breadcrumb from "./components/Breadcrumb";
+import Toast from "./components/Toast";
 import "./DirectoryView.css";
 
 function DirectoryView() {
@@ -49,9 +50,23 @@ function DirectoryView() {
   // Storage refresh key - increment to trigger storage refetch in header
   const [storageRefreshKey, setStorageRefreshKey] = useState(0);
 
+  // Toast messages
+  const [successMessage, setSuccessMessage] = useState("");
+
   // Breadcrumb state
   const [breadcrumb, setBreadcrumb] = useState([]);
   const [rootDirId, setRootDirId] = useState(null);
+
+  // View mode state (list or grid)
+  const [viewMode, setViewMode] = useState(() => {
+    return localStorage.getItem('viewMode') || 'list';
+  });
+
+  // Save view mode to localStorage
+  const toggleViewMode = (mode) => {
+    setViewMode(mode);
+    localStorage.setItem('viewMode', mode);
+  };
 
   /**
    * Utility: handle fetch errors
@@ -62,7 +77,7 @@ function DirectoryView() {
       try {
         const data = await response.json();
         if (data.error) errMsg = data.error;
-      } catch (_) {
+      } catch {
         // If JSON parsing fails, default errMsg stays
       }
       throw new Error(errMsg);
@@ -109,6 +124,7 @@ function DirectoryView() {
     getDirectoryItems();
     // Reset context menu
     setActiveContextMenu(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dirId]);
 
   /**
@@ -238,6 +254,7 @@ function DirectoryView() {
       setIsUploading(false);
       getDirectoryItems();
       setStorageRefreshKey((p) => p + 1);
+      setSuccessMessage("File uploaded successfully!");
     };
 
     xhr.onerror = () => {
@@ -278,6 +295,7 @@ function DirectoryView() {
       await handleFetchErrors(response);
       getDirectoryItems();
       setStorageRefreshKey((prev) => prev + 1); // Refresh storage display
+      setSuccessMessage("File deleted successfully!");
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -293,6 +311,7 @@ function DirectoryView() {
       await handleFetchErrors(response);
       getDirectoryItems();
       setStorageRefreshKey((prev) => prev + 1); // Refresh storage display
+      setSuccessMessage("Folder deleted successfully!");
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -316,6 +335,7 @@ function DirectoryView() {
       setNewDirname("New Folder");
       setShowCreateDirModal(false);
       getDirectoryItems();
+      setSuccessMessage("Folder created successfully!");
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -376,6 +396,7 @@ function DirectoryView() {
       setRenameType(null);
       setRenameId(null);
       getDirectoryItems();
+      setSuccessMessage("Renamed successfully!");
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -387,23 +408,51 @@ function DirectoryView() {
   function handleContextMenu(e, id) {
     e.stopPropagation();
     e.preventDefault();
+    // Get click position
     const clickX = e.clientX;
     const clickY = e.clientY;
+    
+    // Get viewport dimensions
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    // Context menu approximate dimensions
+    const menuWidth = 180;
+    const menuHeight = 160;
+    
+    // Calculate position to keep menu in viewport
+    let posX = clickX;
+    let posY = clickY;
+    
+    // Adjust if menu would go off right edge
+    if (clickX + menuWidth > viewportWidth) {
+      posX = clickX - menuWidth;
+    }
+    
+    // Adjust if menu would go off bottom edge
+    if (clickY + menuHeight > viewportHeight) {
+      posY = clickY - menuHeight;
+    }
 
     if (activeContextMenu === id) {
       setActiveContextMenu(null);
     } else {
       setActiveContextMenu(id);
-      setContextMenuPos({ x: clickX - 110, y: clickY });
+      setContextMenuPos({ x: posX, y: posY });
     }
   }
 
   useEffect(() => {
-    function handleDocumentClick() {
+    function handleDocumentClick(e) {
+      // Don't close if clicking on context menu or its trigger
+      if (e.target.closest('.context-menu') || e.target.closest('.context-menu-trigger') || e.target.closest('.grid-menu-trigger')) {
+        return;
+      }
       setActiveContextMenu(null);
     }
-    document.addEventListener("click", handleDocumentClick);
-    return () => document.removeEventListener("click", handleDocumentClick);
+    // Use mousedown instead of click for better event handling
+    document.addEventListener("mousedown", handleDocumentClick);
+    return () => document.removeEventListener("mousedown", handleDocumentClick);
   }, []);
 
   // Combine directories & files into one list for rendering
@@ -413,12 +462,27 @@ function DirectoryView() {
   ];
   return (
     <div className="directory-view">
-      {/* Top error message for general errors */}
+      {/* Toast notification for errors */}
       {errorMessage &&
         errorMessage !==
         "Directory not found or you do not have access to it!" && (
-          <div className="error-message">{errorMessage}</div>
+          <Toast 
+            message={errorMessage} 
+            type="error" 
+            duration={5000}
+            onClose={() => setErrorMessage("")}
+          />
         )}
+
+      {/* Toast notification for success */}
+      {successMessage && (
+        <Toast 
+          message={successMessage} 
+          type="success" 
+          duration={4000}
+          onClose={() => setSuccessMessage("")}
+        />
+      )}
 
       <DirectoryHeader
         directoryName={directoryName}
@@ -427,6 +491,8 @@ function DirectoryView() {
         fileInputRef={fileInputRef}
         handleFileSelect={handleFileSelect}
         refreshKey={storageRefreshKey}
+        viewMode={viewMode}
+        toggleViewMode={toggleViewMode}
         // Disable if the user doesn't have access
         disabled={
           errorMessage ===
@@ -490,6 +556,7 @@ function DirectoryView() {
           activeContextMenu={activeContextMenu}
           contextMenuPos={contextMenuPos}
           handleContextMenu={handleContextMenu}
+          closeContextMenu={() => setActiveContextMenu(null)}
           getFileIcon={getFileIcon}
           isUploading={isUploading}
           progressMap={progressMap}
@@ -499,6 +566,7 @@ function DirectoryView() {
           openRenameModal={openRenameModal}
           openDetailsModal={openDetailsModal}
           BASE_URL={BASE_URL}
+          viewMode={viewMode}
         />
       )}
     </div>

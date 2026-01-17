@@ -1,58 +1,99 @@
-/* ========================================
-   STORAGE LIMIT STYLES
-   ======================================== */
+/* ============================================
+   DIRECTORY HEADER - Professional Storage App
+   Modern Cloud Storage UI
+   ============================================ */
 
-/* Container for the storage limit section */
+/* Storage Limit Container */
 .storage-limit {
-  width: 85%;
-  padding: 4px 16px;
-  background: #ffffff;
-  border-radius: 8px;
-  margin: 8px 0;
+  width: 100%;
+  max-width: 300px;
+  padding: 14px 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(248, 250, 255, 0.9) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Text info row */
+/* Storage Info Row */
 .storage-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .storage-text {
-  font-size: 12px;
-  font-weight: 500;
-  color: #374151;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  letter-spacing: -0.01em;
 }
 
 .storage-percentage {
-  font-size: 12px;
-  font-weight: 600;
-  color: #3b82f6;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary-700);
+  background: linear-gradient(
+    135deg,
+    var(--primary-50) 0%,
+    var(--primary-100) 100%
+  );
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--primary-100);
 }
 
-/* Slider container */
+/* Storage Slider Container */
 .storage-slider {
   width: 100%;
 }
 
-/* The range input styled as a progress bar */
+/* Custom Range Slider as Progress Bar */
 .slider {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 6px;
-  border-radius: 3px;
+  height: 10px;
+  border-radius: 100px;
   outline: none;
   cursor: default;
-  background: #e5e7eb;
-  /* For webkit: create fill using gradient */
+  background: var(--gray-200);
   background: linear-gradient(
     to right,
-    #3b82f6 0%,
-    #3b82f6 calc(var(--value, 0) * 1%),
-    #e5e7eb calc(var(--value, 0) * 1%),
-    #e5e7eb 100%
+    var(--primary-500) 0%,
+    var(--primary-500) calc(var(--value, 0) * 1%),
+    var(--gray-200) calc(var(--value, 0) * 1%),
+    var(--gray-200) 100%
+  );
+  transition: background 0.4s ease;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Warning state when storage is high */
+.slider.warning {
+  background: linear-gradient(
+    to right,
+    var(--warning-500) 0%,
+    var(--warning-500) calc(var(--value, 0) * 1%),
+    var(--gray-200) calc(var(--value, 0) * 1%),
+    var(--gray-200) 100%
+  );
+}
+
+/* Danger state when storage is critical */
+.slider.danger {
+  background: linear-gradient(
+    to right,
+    var(--danger-500) 0%,
+    var(--danger-500) calc(var(--value, 0) * 1%),
+    var(--gray-200) calc(var(--value, 0) * 1%),
+    var(--gray-200) 100%
   );
 }
 
@@ -82,32 +123,66 @@
 
 /* Track styles */
 .slider::-webkit-slider-runnable-track {
-  height: 6px;
-  border-radius: 3px;
+  height: 10px;
+  border-radius: 100px;
   background: transparent;
 }
 
 /* Firefox: use progress/track for fill */
 .slider::-moz-range-progress {
-  background: #3b82f6;
-  height: 6px;
-  border-radius: 3px;
+  background: var(--primary-500);
+  height: 10px;
+  border-radius: 100px;
 }
 
 .slider::-moz-range-track {
-  background: #e5e7eb;
-  height: 6px;
-  border-radius: 3px;
+  background: var(--gray-200);
+  height: 10px;
+  border-radius: 100px;
 }
 
 /* IE/Edge */
 .slider::-ms-fill-lower {
-  background: #3b82f6;
-  border-radius: 3px;
+  background: var(--primary-500);
+  border-radius: 100px;
 }
 
 .slider::-ms-fill-upper {
-  background: #e5e7eb;
-  border-radius: 3px;
+  background: var(--gray-200);
+  border-radius: 100px;
 }
 
+/* Upgrade Link */
+.upgrade-storage-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.75rem;
+  color: var(--primary-600);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: transparent;
+}
+
+.upgrade-storage-link:hover {
+  color: var(--primary-700);
+  background: var(--primary-50);
+  gap: 10px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .storage-limit {
+    max-width: 100%;
+    padding: 12px 16px;
+  }
+
+  .storage-text,
+  .storage-percentage {
+    font-size: 0.75rem;
+  }
+}

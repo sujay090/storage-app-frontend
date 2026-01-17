@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { GoogleLogin } from '@react-oauth/google';
 import "./Register.css";
 import { loginWithGoogle } from "./apis/loginWithGoogle";
+import Toast from "./components/Toast";
 
 const Register = () => {
   const BASE_URL = import.meta.env.VITE_SERVER_URL;
@@ -297,19 +298,23 @@ const Register = () => {
             />
           </div>
 
-          {/* Success/Error Messages */}
+          {/* Success/Error Toast Messages */}
           {successMessage && (
-            <div className="success-message">
-              <span className="success-icon">✓</span>
-              {successMessage}
-            </div>
+            <Toast 
+              message={successMessage} 
+              type="success" 
+              duration={4000}
+              onClose={() => setSuccessMessage("")}
+            />
           )}
 
           {serverError && (
-            <div className="error-message">
-              <span className="error-icon">⚠</span>
-              {serverError}
-            </div>
+            <Toast 
+              message={serverError} 
+              type="error" 
+              duration={5000}
+              onClose={() => setServerError("")}
+            />
           )}
 
           <button

@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { GoogleLogin } from '@react-oauth/google';
 import "./Login.css";
 import { loginWithGoogle } from "./apis/loginWithGoogle";
+import Toast from "./components/Toast";
 
 const Login = () => {
   const BASE_URL = import.meta.env.VITE_SERVER_URL;
@@ -79,15 +80,21 @@ const Login = () => {
 
         <form onSubmit={handleSubmit}>
           {serverError && (
-            <div className="error-message">
-              {serverError}
-            </div>
+            <Toast 
+              message={serverError} 
+              type="error" 
+              duration={5000}
+              onClose={() => setServerError("")}
+            />
           )}
 
           {successMessage && (
-            <div className="success-message">
-              {successMessage}
-            </div>
+            <Toast 
+              message={successMessage} 
+              type="success" 
+              duration={3000}
+              onClose={() => setSuccessMessage("")}
+            />
           )}
 
           <div className="input-group">

@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import {
   FaFolderPlus,
   FaUpload,
-  FaUser,
   FaSignOutAlt,
   FaSignInAlt,
+  FaThList,
+  FaTh,
 } from "react-icons/fa";
 import "./DirectoryHeader.css";
 function DirectoryHeader({
@@ -16,6 +17,8 @@ function DirectoryHeader({
   handleFileSelect,
   disabled = false,
   refreshKey = 0, // When this changes, refetch user/storage data
+  viewMode = 'list',
+  toggleViewMode = () => {},
 }) {
   // Use a constant for the API base URL
   const BASE_URL = import.meta.env.VITE_SERVER_URL;
@@ -166,6 +169,26 @@ function DirectoryHeader({
     <header className="directory-header">
       <h1>{directoryName}</h1>
       <div className="header-links">
+        {/* View Mode Toggle */}
+        <div className="view-toggle">
+          <button
+            className={`icon-button view-btn ${viewMode === 'list' ? 'active' : ''}`}
+            title="List View"
+            onClick={() => toggleViewMode('list')}
+          >
+            <FaThList />
+          </button>
+          <button
+            className={`icon-button view-btn ${viewMode === 'grid' ? 'active' : ''}`}
+            title="Grid View"
+            onClick={() => toggleViewMode('grid')}
+          >
+            <FaTh />
+          </button>
+        </div>
+
+        <div className="header-divider"></div>
+
         {/* Create Folder (icon button) */}
         <button
           className="icon-button"
