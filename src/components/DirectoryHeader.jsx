@@ -23,12 +23,16 @@ function DirectoryHeader({
   const [loggedIn, setLoggedIn] = useState(false);
   const [userName, setUserName] = useState("Guest User");
   const [userEmail, setUserEmail] = useState("guest@example.com");
-  const [userPic, setUserPic] = useState("https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=");
-  
+  const [userPic, setUserPic] = useState(
+    "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=",
+  );
+
   // Storage state
-  const [maxStorageInBytes, setMaxStorageInBytes] = useState(1 * 1024 * 1024 * 1024); // 1 GB default
+  const [maxStorageInBytes, setMaxStorageInBytes] = useState(
+    1 * 1024 * 1024 * 1024,
+  ); // 1 GB default
   const [usedStorageInBytes, setUsedStorageInBytes] = useState(0);
-  
+
   const userMenuRef = useRef(null);
   const navigate = useNavigate();
 
@@ -51,9 +55,13 @@ function DirectoryHeader({
   };
 
   // Calculate percentage used
-  const percentUsed = maxStorageInBytes > 0 
-    ? Math.min(100, Math.round((usedStorageInBytes / maxStorageInBytes) * 100)) 
-    : 0;
+  const percentUsed =
+    maxStorageInBytes > 0
+      ? Math.min(
+          100,
+          Math.round((usedStorageInBytes / maxStorageInBytes) * 100),
+        )
+      : 0;
 
   // -------------------------------------------
   // 1. Fetch user info from /user on mount
@@ -69,7 +77,9 @@ function DirectoryHeader({
           setUserName(user.name);
           setUserEmail(user.email);
           setUserPic(user.picture);
-          setMaxStorageInBytes(user.maxStorageInBytes || 1 * 1024 * 1024 * 1024);
+          setMaxStorageInBytes(
+            user.maxStorageInBytes || 1 * 1024 * 1024 * 1024,
+          );
           setUsedStorageInBytes(user.usedStorageInBytes || 0);
           setLoggedIn(true);
         } else if (response.status === 401) {
@@ -122,7 +132,7 @@ function DirectoryHeader({
     }
   };
 
-  // all logout 
+  // all logout
   const handleLogoutAll = async () => {
     try {
       const response = await fetch(`${BASE_URL}/user/logout-all`, {
@@ -144,7 +154,7 @@ function DirectoryHeader({
     } finally {
       setShowUserMenu(false);
     }
-  }
+  };
   // -------------------------------------------
   // 4. Close menu on outside click
   // -------------------------------------------
@@ -159,7 +169,6 @@ function DirectoryHeader({
       document.removeEventListener("mousedown", handleDocumentClick);
     };
   }, []);
-
 
   return (
     <header className="directory-header">
@@ -203,9 +212,11 @@ function DirectoryHeader({
           >
             <img
               className="user-icon"
-              src={userPic} alt="user-icon"
+              src={userPic}
+              alt="user-icon"
               referrerPolicy="no-referrer"
-              crossOrigin="anonymous" />
+              crossOrigin="anonymous"
+            />
           </button>
 
           {showUserMenu && (
@@ -219,7 +230,10 @@ function DirectoryHeader({
                   </div>
                   <div className="storage-limit">
                     <div className="storage-info">
-                      <div className="storage-text">{formatStorage(usedStorageInBytes)} of {formatMaxStorage(maxStorageInBytes)} used</div>
+                      <div className="storage-text">
+                        {formatStorage(usedStorageInBytes)} of{" "}
+                        {formatMaxStorage(maxStorageInBytes)} used
+                      </div>
                     </div>
 
                     <div className="storage-slider">
@@ -230,7 +244,7 @@ function DirectoryHeader({
                         max={100}
                         value={percentUsed}
                         readOnly
-                        style={{ '--value': `${percentUsed}` }}
+                        style={{ "--value": `${percentUsed}` }}
                       />
                     </div>
                   </div>

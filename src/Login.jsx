@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from "@react-oauth/google";
 import "./Login.css";
 import { loginWithGoogle } from "./apis/loginWithGoogle";
 import Toast from "./components/Toast";
@@ -64,7 +64,9 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Error:", error);
-      setServerError("Network error. Please check your connection and try again.");
+      setServerError(
+        "Network error. Please check your connection and try again.",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -80,18 +82,18 @@ const Login = () => {
 
         <form onSubmit={handleSubmit}>
           {serverError && (
-            <Toast 
-              message={serverError} 
-              type="error" 
+            <Toast
+              message={serverError}
+              type="error"
               duration={5000}
               onClose={() => setServerError("")}
             />
           )}
 
           {successMessage && (
-            <Toast 
-              message={successMessage} 
-              type="success" 
+            <Toast
+              message={successMessage}
+              type="success"
               duration={3000}
               onClose={() => setSuccessMessage("")}
             />
@@ -121,12 +123,8 @@ const Login = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className="login-button"
-            disabled={isLoading}
-          >
-            {isLoading ? 'Logging in...' : 'Login'}
+          <button type="submit" className="login-button" disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Login"}
           </button>
         </form>
 
@@ -134,23 +132,25 @@ const Login = () => {
           Don't have an account? <Link to="/register">Sign up</Link>
         </p>
         <p className="or">Or</p>
-        <GoogleLogin
-          onSuccess={async (credentialResponse) => {
-            const data = await loginWithGoogle(credentialResponse.credential)
-            if (data.error) {
-              console.log(data);
-              return;
-            }
-            navigate("/")
-          }}
-          shape="pill"
-          theme="filled_blue"
-          text="continue_with"
-          useOneTap
-          onError={() => {
-            console.log('Login Failed');
-          }}
-        />
+        <div className="google-login-container">
+          <GoogleLogin
+            onSuccess={async (credentialResponse) => {
+              const data = await loginWithGoogle(credentialResponse.credential);
+              if (data.error) {
+                console.log(data);
+                return;
+              }
+              navigate("/");
+            }}
+            shape="pill"
+            theme="filled_blue"
+            text="continue_with"
+            useOneTap
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
+        </div>
       </div>
     </div>
   );

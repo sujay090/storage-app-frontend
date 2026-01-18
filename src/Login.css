@@ -338,6 +338,50 @@
   margin-bottom: 24px;
 }
 
+/* OR Divider */
+.or {
+  text-align: center;
+  color: var(--gray-400);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin: 20px 0;
+  position: relative;
+}
+
+.or::before,
+.or::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: calc(50% - 20px);
+  height: 1px;
+  background: var(--gray-200);
+}
+
+.or::before {
+  left: 0;
+}
+
+.or::after {
+  right: 0;
+}
+
+/* Google Login Container */
+.google-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Make sure Google login button is responsive */
+.google-login-container > div {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
 .social-btn {
   display: flex;
   align-items: center;
@@ -366,6 +410,16 @@
 }
 
 /* Mobile Responsive */
+@media (max-width: 768px) {
+  .google-login-container {
+    margin-top: 20px;
+  }
+
+  .google-login-container > div {
+    max-width: 300px !important;
+  }
+}
+
 @media (max-width: 480px) {
   .login-box {
     padding: 32px 24px;
@@ -382,5 +436,19 @@
 
   .login-button {
     padding: 12px;
+  }
+
+  .google-login-container {
+    margin-top: 24px;
+  }
+
+  .google-login-container > div {
+    max-width: 280px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .google-login-container > div {
+    max-width: 250px !important;
   }
 }
