@@ -7,9 +7,10 @@
   max-width: 1500px;
   margin: 0 auto;
   padding: 40px 32px;
-  background: linear-gradient(180deg, #f8faff 0%, #ffffff 50%, #f0f4ff 100%);
+  background: var(--bg-primary);
   min-height: 100vh;
   position: relative;
+  color: var(--text-main);
 }
 
 /* Background Pattern */
@@ -57,7 +58,7 @@
 
 .admin-header h1 {
   font-size: 2.75rem;
-  color: var(--gray-900);
+  color: var(--text-main);
   margin: 0 0 14px 0;
   font-weight: 800;
   display: flex;
@@ -74,7 +75,7 @@
 }
 
 .admin-header p {
-  color: var(--gray-500);
+  color: var(--text-muted);
   font-size: 1.15rem;
   margin: 0;
 }
@@ -90,7 +91,7 @@
 }
 
 .stat-card {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--card-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: var(--radius-xl);
@@ -99,7 +100,7 @@
   align-items: center;
   gap: 22px;
   box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--border-color);
   transition: all var(--transition);
 }
 
@@ -173,10 +174,11 @@
 .search-input {
   width: 100%;
   padding: 14px 16px 14px 48px;
-  border: 2px solid var(--gray-200);
+  border: 2px solid var(--border-color);
   border-radius: var(--radius);
   font-size: 0.95rem;
-  background: white;
+  background: var(--input-bg);
+  color: var(--text-main);
   transition: all var(--transition-fast);
 }
 
@@ -194,11 +196,11 @@
 
 /* Table Container */
 .table-container {
-  background: white;
+  background: var(--card-bg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   overflow: hidden;
-  border: 1px solid var(--gray-100);
+  border: 1px solid var(--border-color);
 }
 
 /* Users Table */
@@ -208,15 +210,15 @@
 }
 
 .users-table thead {
-  background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
-  border-bottom: 2px solid var(--gray-200);
+  background: var(--card-header-bg);
+  border-bottom: 2px solid var(--border-color);
 }
 
 .users-table th {
   padding: 16px 20px;
   text-align: left;
   font-weight: 700;
-  color: var(--gray-700);
+  color: var(--text-main);
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -238,8 +240,8 @@
 
 .users-table td {
   padding: 16px 20px;
-  border-bottom: 1px solid var(--gray-100);
-  color: var(--gray-700);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
   font-size: 0.9rem;
 }
 
@@ -248,7 +250,7 @@
 }
 
 .user-row:hover {
-  background: var(--gray-50);
+  background: var(--hover-bg);
 }
 
 .user-row:last-child td {
@@ -357,8 +359,8 @@
 }
 
 .auth-badge.google {
-  background: #f3f4f6;
-  color: #1f2937;
+  background: var(--card-bg);
+  color: var(--text-main);
 }
 
 .auth-badge.google::before {

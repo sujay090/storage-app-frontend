@@ -1,188 +1,297 @@
 /* ============================================
-   DIRECTORY HEADER - Professional Storage App
-   Modern Cloud Storage UI
+   DIRECTORY HEADER - IronCloud Theme
    ============================================ */
 
-/* Storage Limit Container */
-.storage-limit {
-  width: 100%;
-  max-width: 300px;
-  padding: 14px 18px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(248, 250, 255, 0.9) 100%
-  );
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: var(--shadow-sm);
-}
-
-/* Storage Info Row */
-.storage-info {
+.directory-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  padding: var(--space-4) 0;
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid var(--border-subtle);
+  gap: var(--space-4);
+}
+
+/* Header Left Side - Brand */
+.header-left {
+  display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  gap: var(--space-4);
+  /* Remove flex: 1 to keep it left-aligned */
 }
 
-.storage-text {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--gray-600);
-  letter-spacing: -0.01em;
-}
-
-.storage-percentage {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--primary-700);
-  background: linear-gradient(
-    135deg,
-    var(--primary-50) 0%,
-    var(--primary-100) 100%
-  );
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--primary-100);
-}
-
-/* Storage Slider Container */
-.storage-slider {
-  width: 100%;
-}
-
-/* Custom Range Slider as Progress Bar */
-.slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 10px;
-  border-radius: 100px;
-  outline: none;
-  cursor: default;
-  background: var(--gray-200);
-  background: linear-gradient(
-    to right,
-    var(--primary-500) 0%,
-    var(--primary-500) calc(var(--value, 0) * 1%),
-    var(--gray-200) calc(var(--value, 0) * 1%),
-    var(--gray-200) 100%
-  );
-  transition: background 0.4s ease;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
-}
-
-/* Warning state when storage is high */
-.slider.warning {
-  background: linear-gradient(
-    to right,
-    var(--warning-500) 0%,
-    var(--warning-500) calc(var(--value, 0) * 1%),
-    var(--gray-200) calc(var(--value, 0) * 1%),
-    var(--gray-200) 100%
-  );
-}
-
-/* Danger state when storage is critical */
-.slider.danger {
-  background: linear-gradient(
-    to right,
-    var(--danger-500) 0%,
-    var(--danger-500) calc(var(--value, 0) * 1%),
-    var(--gray-200) calc(var(--value, 0) * 1%),
-    var(--gray-200) 100%
-  );
-}
-
-/* Hide the thumb completely */
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 0;
-  height: 0;
-  background: transparent;
-  border: none;
-}
-
-.slider::-moz-range-thumb {
-  width: 0;
-  height: 0;
-  background: transparent;
-  border: none;
-}
-
-.slider::-ms-thumb {
-  width: 0;
-  height: 0;
-  background: transparent;
-  border: none;
-}
-
-/* Track styles */
-.slider::-webkit-slider-runnable-track {
-  height: 10px;
-  border-radius: 100px;
-  background: transparent;
-}
-
-/* Firefox: use progress/track for fill */
-.slider::-moz-range-progress {
-  background: var(--primary-500);
-  height: 10px;
-  border-radius: 100px;
-}
-
-.slider::-moz-range-track {
-  background: var(--gray-200);
-  height: 10px;
-  border-radius: 100px;
-}
-
-/* IE/Edge */
-.slider::-ms-fill-lower {
-  background: var(--primary-500);
-  border-radius: 100px;
-}
-
-.slider::-ms-fill-upper {
-  background: var(--gray-200);
-  border-radius: 100px;
-}
-
-/* Upgrade Link */
-.upgrade-storage-link {
-  display: inline-flex;
+.header-brand {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 12px;
-  font-size: 0.75rem;
-  color: var(--primary-600);
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Mobile view: Remove gap when only logo is shown */
+@media (max-width: 768px) {
+  .header-brand {
+    gap: 0;
+  }
+}
+
+.brand-logo-small {
+  width: 32px;
+  height: 32px;
+  background: var(--gradient-brand);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-glow);
+}
+
+.logo-icon-small {
+  color: white;
+  font-size: 1rem;
+}
+
+.brand-name-small {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.1rem;
   font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin: 0;
+  text-shadow: 0 0 12px var(--brand-primary);
+}
+
+/* Desktop Breadcrumb - Full Left Position */
+.desktop-breadcrumb {
+  display: none;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Mobile/Desktop visibility classes */
+.mobile-only {
+  display: none; /* Hide by default */
+}
+
+.desktop-only {
+  display: none; /* Hide by default */
+}
+
+/* Desktop view: Show text only, hide logo */
+@media (min-width: 769px) {
+  .desktop-only {
+    display: block;
+  }
+
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* Mobile view: Show logo only, hide text */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: flex;
+  }
+
+  .header-brand {
+    display: flex;
+    gap: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-folder-btn {
+    display: none;
+  }
+
+  .header-links {
+    gap: 8px;
+  }
+
+  .icon-button {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-left: auto;
+  /* Push to right */
+}
+
+/* Icon Buttons */
+.icon-button {
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.2s;
+  border: 1px solid var(--border-subtle);
+}
+
+.icon-button:hover {
+  background: var(--brand-primary);
+  color: #fff;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 10px var(--brand-glow);
+}
+
+.icon-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* User Menu */
+.user-menu-container {
+  position: relative;
+}
+
+.user-icon-btn {
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid var(--border-subtle);
+}
+
+.user-icon-btn:hover {
+  border-color: var(--brand-primary);
+}
+
+.user-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dropdown Menu */
+.user-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 280px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-4);
+  z-index: 100;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.user-menu-item {
+  padding: var(--space-2) var(--space-4);
   cursor: pointer;
-  transition: all var(--transition);
-  padding: 6px 12px;
-  border-radius: var(--radius-full);
-  background: transparent;
-}
-
-.upgrade-storage-link:hover {
-  color: var(--primary-700);
-  background: var(--primary-50);
+  border-radius: var(--radius-md);
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
   gap: 10px;
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .storage-limit {
-    max-width: 100%;
-    padding: 12px 16px;
-  }
+.user-info {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+  background: var(--bg-surface);
+  padding: var(--space-4);
+  pointer-events: none;
+  /* Just info */
+}
 
-  .storage-text,
-  .storage-percentage {
-    font-size: 0.75rem;
-  }
+.user-name {
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 1rem;
+}
+
+.user-email {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.user-menu-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: var(--space-2) 0;
+}
+
+.login-btn {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.login-btn:hover {
+  background: var(--iron-800);
+  color: var(--brand-primary);
+}
+
+.menu-item-icon {
+  font-size: 1rem;
+}
+
+/* Storage Widget in Menu */
+.storage-limit {
+  margin-bottom: var(--space-4);
+}
+
+.storage-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.storage-text {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.storage-slider {
+  height: 6px;
+  background: var(--iron-900);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.slider {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    var(--brand-primary) 0%,
+    var(--brand-secondary) 100%
+  );
+  /* Custom slider styling logic from original css might be complex to replicate exactly without the gradient percentage trick, 
+     so let's simplify to a pure visual progress bar if possible or keep the original range input approach but styled.
+     The original used a clever gradient on the input[type=range]. Let's keep the clever gradient but map it to our vars.
+  */
+  appearance: none;
+  -webkit-appearance: none;
+  background: linear-gradient(
+    to right,
+    var(--brand-primary) 0%,
+    var(--brand-primary) calc(var(--value, 0) * 1%),
+    var(--iron-900) calc(var(--value, 0) * 1%),
+    var(--iron-900) 100%
+  );
+  border-radius: 100px;
+}
+
+/* Range Input Reset */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
 }

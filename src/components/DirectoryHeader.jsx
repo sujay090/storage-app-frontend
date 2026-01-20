@@ -5,10 +5,11 @@ import {
   FaUpload,
   FaSignOutAlt,
   FaSignInAlt,
+  FaCloud,
 } from "react-icons/fa";
+import ThemeToggle from "./ThemeToggle";
 import "./DirectoryHeader.css";
 function DirectoryHeader({
-  directoryName,
   onCreateFolderClick,
   onUploadFilesClick,
   fileInputRef,
@@ -172,18 +173,31 @@ function DirectoryHeader({
 
   return (
     <header className="directory-header">
-      <h1>{directoryName}</h1>
+      {/* Left Side - Brand Only */}
+      <div className="header-left">
+        <div className="header-brand">
+          {/* Mobile: Only logo */}
+          <div className="brand-logo-small mobile-only">
+            <FaCloud className="logo-icon-small" />
+          </div>
+          {/* Desktop: Only text name */}
+          <h1 className="brand-name-small desktop-only">IronCloud</h1>
+        </div>
+      </div>
+
+      {/* Right Side - Actions + User Menu */}
       <div className="header-links">
+        <ThemeToggle />
+
         {/* Create Folder (icon button) */}
         <button
-          className="icon-button"
+          className="icon-button create-folder-btn"
           title="Create Folder"
           onClick={onCreateFolderClick}
           disabled={disabled}
         >
           <FaFolderPlus />
         </button>
-
         {/* Upload Files (icon button) */}
         <button
           className="icon-button"

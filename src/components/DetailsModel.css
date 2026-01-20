@@ -1,11 +1,14 @@
-/* ============================================   DETAILS MODAL - Professional Storage App   ============================================ */ /* Modal Overlay */
+/* ============================================
+   DETAILS MODAL - IronCloud Theme
+   ============================================ */
+/* Modal Overlay */
 .details-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -23,13 +26,14 @@
   }
 } /* Modal Container */
 .details-modal {
-  background: white;
+  background: var(--bg-panel);
   border-radius: var(--radius-lg);
   width: 100%;
   max-width: 480px;
-  box-shadow: var(--shadow-xl);
+  box-shadow: var(--shadow-lg);
   animation: modalSlide 0.3s ease;
   overflow: hidden;
+  border: 1px solid var(--border-subtle);
 }
 @keyframes modalSlide {
   from {
@@ -46,18 +50,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px;
-  background: linear-gradient(
-    135deg,
-    var(--primary-50) 0%,
-    var(--gray-50) 100%
-  );
-  border-bottom: 1px solid var(--gray-200);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
 }
 .details-header h3 {
   margin: 0;
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--gray-900);
+  color: var(--text-main);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -67,10 +67,10 @@
   font-size: 1.2rem;
 }
 .details-close {
-  background: white;
-  border: 1px solid var(--gray-200);
+  background: var(--bg-app);
+  border: 1px solid var(--border-subtle);
   font-size: 1.25rem;
-  color: var(--gray-500);
+  color: var(--text-muted);
   cursor: pointer;
   padding: 0;
   width: 36px;
@@ -78,13 +78,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius);
-  transition: all var(--transition-fast);
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
 }
 .details-close:hover {
-  background: var(--gray-100);
-  color: var(--gray-700);
-  border-color: var(--gray-300);
+  background: var(--iron-700);
+  color: var(--text-main);
+  border-color: var(--brand-primary);
 } /* Content */
 .details-content {
   padding: 24px;
@@ -99,7 +99,7 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 14px 0;
-  border-bottom: 1px solid var(--gray-100);
+  border-bottom: 1px solid var(--border-subtle);
   gap: 16px;
 }
 .detail-row:last-child {
@@ -107,14 +107,14 @@
 }
 .detail-label {
   font-weight: 500;
-  color: var(--gray-500);
+  color: var(--text-muted);
   font-size: 0.875rem;
   min-width: 100px;
   flex-shrink: 0;
 }
 .detail-value {
-  font-weight: 600;
-  color: var(--gray-800);
+  font-weight: 500;
+  color: var(--text-main);
   font-size: 0.875rem;
   text-align: right;
   word-break: break-word;
@@ -123,31 +123,33 @@
 .detail-path {
   font-family: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", monospace;
   font-size: 0.8rem;
-  background: var(--gray-100);
+  background: var(--bg-app);
   padding: 8px 12px;
-  border-radius: var(--radius);
-  color: var(--gray-600);
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
   max-width: 260px;
   overflow-x: auto;
   white-space: nowrap;
-  border: 1px solid var(--gray-200);
+  border: 1px solid var(--border-subtle);
 } /* File Size Badge */
 .detail-size {
-  background: var(--primary-50);
-  color: var(--primary-700);
+  background: var(--iron-800);
+  color: var(--brand-primary);
   padding: 4px 10px;
   border-radius: var(--radius-sm);
   font-weight: 600;
+  border: 1px solid var(--iron-700);
 } /* File Type Badge */
 .detail-type {
-  background: var(--gray-100);
-  color: var(--gray-700);
+  background: var(--iron-800);
+  color: var(--text-muted);
   padding: 4px 10px;
   border-radius: var(--radius-sm);
   font-weight: 500;
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.5px;
+  border: 1px solid var(--iron-700);
 } /* Date Time Display */
 .date-time {
   text-align: right;
@@ -157,12 +159,12 @@
 }
 .date-time .date {
   font-weight: 600;
-  color: var(--gray-800);
+  color: var(--text-main);
   font-size: 0.875rem;
 }
 .date-time .time {
   font-weight: 400;
-  color: var(--gray-500);
+  color: var(--text-muted);
   font-size: 0.8rem;
 } /* Footer */
 .details-footer {
@@ -170,46 +172,38 @@
   justify-content: flex-end;
   gap: 12px;
   padding: 20px 24px;
-  background: var(--gray-50);
-  border-top: 1px solid var(--gray-200);
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
 }
 .details-footer button {
   padding: 10px 20px;
-  border-radius: var(--radius);
+  border-radius: var(--radius-md);
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all 0.2s;
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
 .btn-close {
-  background: white;
-  border: 1px solid var(--gray-300);
-  color: var(--gray-700);
+  background: var(--bg-app);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
 }
 .btn-close:hover {
-  background: var(--gray-100);
-  border-color: var(--gray-400);
+  background: var(--iron-700);
+  border-color: var(--iron-500);
+  color: var(--text-main);
 }
 .btn-download {
-  background: linear-gradient(
-    135deg,
-    var(--primary-500) 0%,
-    var(--primary-600) 100%
-  );
+  background: var(--gradient-brand);
   border: none;
   color: white;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  box-shadow: var(--shadow-glow);
 }
 .btn-download:hover {
-  background: linear-gradient(
-    135deg,
-    var(--primary-600) 0%,
-    var(--primary-700) 100%
-  );
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  filter: brightness(1.1);
   transform: translateY(-1px);
 }
 .btn-download:active {
@@ -218,9 +212,9 @@
 .detail-preview {
   margin-top: 16px;
   padding: 16px;
-  background: var(--gray-50);
-  border-radius: var(--radius);
-  border: 1px solid var(--gray-200);
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
   text-align: center;
 }
 
@@ -234,6 +228,7 @@
 .detail-preview-icon {
   font-size: 4rem;
   opacity: 0.6;
+  color: var(--text-muted);
 }
 
 /* Responsive Design */

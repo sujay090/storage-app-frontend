@@ -59,13 +59,13 @@ function DirectoryView() {
 
   // View mode state (list or grid)
   const [viewMode, setViewMode] = useState(() => {
-    return localStorage.getItem('viewMode') || 'list';
+    return localStorage.getItem("viewMode") || "list";
   });
 
   // Save view mode to localStorage
   const toggleViewMode = (mode) => {
     setViewMode(mode);
-    localStorage.setItem('viewMode', mode);
+    localStorage.setItem("viewMode", mode);
   };
 
   /**
@@ -265,8 +265,6 @@ function DirectoryView() {
     xhr.send(file);
   }
 
-
-
   // (processUploadQueue removed for single file upload)
 
   /**
@@ -280,7 +278,6 @@ function DirectoryView() {
     setUploadXhrMap({});
     setIsUploading(false);
   }
-
 
   /**
    * Delete a file/directory
@@ -385,7 +382,7 @@ function DirectoryView() {
         body: JSON.stringify(
           renameType === "file"
             ? { newFilename: renameValue }
-            : { newDirName: renameValue }
+            : { newDirName: renameValue },
         ),
         credentials: "include",
       });
@@ -411,24 +408,24 @@ function DirectoryView() {
     // Get click position
     const clickX = e.clientX;
     const clickY = e.clientY;
-    
+
     // Get viewport dimensions
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
-    
+
     // Context menu approximate dimensions
     const menuWidth = 180;
     const menuHeight = 160;
-    
+
     // Calculate position to keep menu in viewport
     let posX = clickX;
     let posY = clickY;
-    
+
     // Adjust if menu would go off right edge
     if (clickX + menuWidth > viewportWidth) {
       posX = clickX - menuWidth;
     }
-    
+
     // Adjust if menu would go off bottom edge
     if (clickY + menuHeight > viewportHeight) {
       posY = clickY - menuHeight;
@@ -445,7 +442,11 @@ function DirectoryView() {
   useEffect(() => {
     function handleDocumentClick(e) {
       // Don't close if clicking on context menu or its trigger
-      if (e.target.closest('.context-menu') || e.target.closest('.context-menu-trigger') || e.target.closest('.grid-menu-trigger')) {
+      if (
+        e.target.closest(".context-menu") ||
+        e.target.closest(".context-menu-trigger") ||
+        e.target.closest(".grid-menu-trigger")
+      ) {
         return;
       }
       setActiveContextMenu(null);
@@ -465,10 +466,10 @@ function DirectoryView() {
       {/* Toast notification for errors */}
       {errorMessage &&
         errorMessage !==
-        "Directory not found or you do not have access to it!" && (
-          <Toast 
-            message={errorMessage} 
-            type="error" 
+          "Directory not found or you do not have access to it!" && (
+          <Toast
+            message={errorMessage}
+            type="error"
             duration={5000}
             onClose={() => setErrorMessage("")}
           />
@@ -476,16 +477,15 @@ function DirectoryView() {
 
       {/* Toast notification for success */}
       {successMessage && (
-        <Toast 
-          message={successMessage} 
-          type="success" 
+        <Toast
+          message={successMessage}
+          type="success"
           duration={4000}
           onClose={() => setSuccessMessage("")}
         />
       )}
 
       <DirectoryHeader
-        directoryName={directoryName}
         onCreateFolderClick={() => setShowCreateDirModal(true)}
         onUploadFilesClick={() => fileInputRef.current.click()}
         fileInputRef={fileInputRef}
@@ -498,38 +498,63 @@ function DirectoryView() {
         }
       />
 
-      {/* Breadcrumb Navigation */}
-      <Breadcrumb items={breadcrumb} rootDirId={rootDirId} />
+      {/* Breadcrumb Navigation - Hidden on Desktop, Shown on Mobile */}
+      <div className="mobile-breadcrumb">
+        <Breadcrumb items={breadcrumb} rootDirId={rootDirId} />
+      </div>
 
-      {/* View Mode Toggle - Below Breadcrumb */}
+      {/* View Mode Toggle with Breadcrumb on Desktop */}
       <div className="view-toggle-bar">
-        <span className="files-count">
-          {combinedItems.length} {combinedItems.length === 1 ? 'item' : 'items'}
-        </span>
-        <div className="view-toggle">
-          <button
-            className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
-            title="List View"
-            onClick={() => toggleViewMode('list')}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="3" y1="6" x2="21" y2="6"/>
-              <line x1="3" y1="12" x2="21" y2="12"/>
-              <line x1="3" y1="18" x2="21" y2="18"/>
-            </svg>
-          </button>
-          <button
-            className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
-            title="Grid View"
-            onClick={() => toggleViewMode('grid')}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect x="3" y="3" width="7" height="7" rx="1"/>
-              <rect x="14" y="3" width="7" height="7" rx="1"/>
-              <rect x="3" y="14" width="7" height="7" rx="1"/>
-              <rect x="14" y="14" width="7" height="7" rx="1"/>
-            </svg>
-          </button>
+        {/* Desktop Breadcrumb - Left side */}
+        <div className="desktop-breadcrumb-toggle">
+          <Breadcrumb items={breadcrumb} rootDirId={rootDirId} />
+        </div>
+
+        {/* Files count and view toggle - Right side */}
+        <div className="toggle-right-section">
+          <span className="files-count">
+            {combinedItems.length}{" "}
+            {combinedItems.length === 1 ? "item" : "items"}
+          </span>
+          <div className="view-toggle">
+            <button
+              className={`view-btn ${viewMode === "list" ? "active" : ""}`}
+              title="List View"
+              onClick={() => toggleViewMode("list")}
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+            <button
+              className={`view-btn ${viewMode === "grid" ? "active" : ""}`}
+              title="Grid View"
+              onClick={() => toggleViewMode("grid")}
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <rect x="3" y="3" width="7" height="7" rx="1" />
+                <rect x="14" y="3" width="7" height="7" rx="1" />
+                <rect x="3" y="14" width="7" height="7" rx="1" />
+                <rect x="14" y="14" width="7" height="7" rx="1" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -569,7 +594,7 @@ function DirectoryView() {
       {combinedItems.length === 0 ? (
         // Check if the error is specifically the "no access" error
         errorMessage ===
-          "Directory not found or you do not have access to it!" ? (
+        "Directory not found or you do not have access to it!" ? (
           <p className="no-data-message">
             Directory not found or you do not have access to it!
           </p>

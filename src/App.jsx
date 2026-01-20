@@ -1,7 +1,7 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import DirectoryView from "./DirectoryView";
 import Register from "./Register";
-import Admin from "./Admin"
+import Admin from "./Admin";
 import AdminPlan from "./AdminPlan";
 import Plan from "./Plan";
 import PaymentSuccess from "./PaymentSuccess";
@@ -9,47 +9,84 @@ import "./App.css";
 import Login from "./Login";
 import Authprovide from "./authProvider/Authprovide";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { useState } from "react";
-import { useEffect } from "react";
-import { createContext } from "react";
-const client_id = "363103927361-cf7666uhnm26bnr2d1a95qajttkua2ki.apps.googleusercontent.com"
+import { useState, useEffect, createContext } from "react";
+import Layout from "./components/Layout";
+import { ThemeProvider } from "./components/ThemeProvider";
+
+// Legal Pages
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
+
+const client_id =
+  "363103927361-cf7666uhnm26bnr2d1a95qajttkua2ki.apps.googleusercontent.com";
 
 const router = createBrowserRouter([
+  // Public Routes (No Sidebar)
   {
-    path: "/",
-    element: <DirectoryView />,
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "/register",
     element: <Register />,
   },
   {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/directory",
-    element: <DirectoryView />,
-  },
-  {
-    path: "/plans",
-    element: <Plan />,
-  },
-  {
     path: "/payment-success",
     element: <PaymentSuccess />,
   },
+  // Legal Pages
   {
-    path: "/directory/:dirId",
-    element: <DirectoryView />,
+    path: "/terms",
+    element: <TermsOfService />,
   },
   {
-    path: "/admin",
-    element: <Authprovide> <Admin /> </Authprovide>,
+    path: "/privacy",
+    element: <PrivacyPolicy />,
   },
   {
-    path: "/admin/plans",
-    element: <Authprovide> <AdminPlan /> </Authprovide>,
+    path: "/refund",
+    element: <RefundPolicy />,
+  },
+
+  // Protected / App Routes (Wrapped in Layout)
+  {
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <DirectoryView />,
+      },
+      {
+        path: "/directory",
+        element: <DirectoryView />,
+      },
+      {
+        path: "/directory/:dirId",
+        element: <DirectoryView />,
+      },
+      {
+        path: "/plans",
+        element: <Plan />,
+      },
+      {
+        path: "/admin",
+        element: (
+          <Authprovide>
+            <Admin />
+          </Authprovide>
+        ),
+      },
+      {
+        path: "/admin/plans",
+        element: (
+          <Authprovide>
+            <AdminPlan />
+          </Authprovide>
+        ),
+      },
+      // Fallback for missing routes inside app could go here
+    ],
   },
 ]);
 
@@ -59,7 +96,7 @@ function App() {
   const [user, setUser] = useState();
   const [loading, useLoading] = useState(false);
   const BASE_URL = import.meta.env.VITE_SERVER_URL;
-  
+
   const fetchUserData = async () => {
     try {
       useLoading(true);
@@ -70,10 +107,8 @@ function App() {
       if (response.ok) {
         const userData = await response.json();
         setUser(userData);
-        console.log("✅ User data loaded:", userData.email);
       } else if (response.status === 401) {
         setUser(null);
-        console.log("❌ User not logged in");
       }
     } catch (error) {
       console.error("❌ Error fetching user:", error);
@@ -85,13 +120,15 @@ function App() {
 
   useEffect(() => {
     fetchUserData();
-  }, [])
+  }, []);
 
   return (
     <>
       <UserContext.Provider value={{ user, loading }}>
         <GoogleOAuthProvider clientId={client_id}>
-          <RouterProvider router={router} />
+          <ThemeProvider>
+            <RouterProvider router={router} />
+          </ThemeProvider>
         </GoogleOAuthProvider>
       </UserContext.Provider>
     </>
