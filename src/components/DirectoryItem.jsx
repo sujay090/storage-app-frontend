@@ -4,8 +4,8 @@ import ContextMenu from "../components/ContextMenu";
 // Colorful file type icons using modern design
 const FileIcons = {
   folder: (
-    <div className="file-icon folder-icon-wrapper">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="w-10 h-10 flex items-center justify-center bg-[var(--bg-surface)] rounded-md p-2 transition-all group-hover:bg-[var(--border-light)] group-hover:scale-105">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-amber-500">
         <path d="M2 6C2 4.89543 2.89543 4 4 4H9L11 6H20C21.1046 6 22 6.89543 22 8V18C22 19.1046 21.1046 20 20 20H4C2.89543 20 2 19.1046 2 18V6Z" fill="url(#folder-gradient)"/>
         <defs>
           <linearGradient id="folder-gradient" x1="2" y1="4" x2="22" y2="20" gradientUnits="userSpaceOnUse">
@@ -17,8 +17,8 @@ const FileIcons = {
     </div>
   ),
   pdf: (
-    <div className="file-icon pdf-icon">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="w-10 h-10 flex items-center justify-center bg-[var(--bg-surface)] rounded-md p-2 transition-all group-hover:bg-[var(--border-light)] group-hover:scale-105">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <path d="M6 2C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2H6Z" fill="url(#pdf-gradient)"/>
         <path d="M14 2V8H20" fill="#DC2626" fillOpacity="0.3"/>
         <text x="12" y="16" textAnchor="middle" fill="white" fontSize="6" fontWeight="bold">PDF</text>
@@ -32,8 +32,8 @@ const FileIcons = {
     </div>
   ),
   image: (
-    <div className="file-icon image-icon">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="w-10 h-10 flex items-center justify-center bg-[var(--bg-surface)] rounded-md p-2 transition-all group-hover:bg-[var(--border-light)] group-hover:scale-105">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <rect x="3" y="3" width="18" height="18" rx="3" fill="url(#image-gradient)"/>
         <circle cx="8.5" cy="8.5" r="2" fill="white" fillOpacity="0.9"/>
         <path d="M21 15L16 10L6 21H18C19.6569 21 21 19.6569 21 18V15Z" fill="white" fillOpacity="0.4"/>
@@ -47,8 +47,8 @@ const FileIcons = {
     </div>
   ),
   video: (
-    <div className="file-icon video-icon">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="w-10 h-10 flex items-center justify-center bg-[var(--bg-surface)] rounded-md p-2 transition-all group-hover:bg-[var(--border-light)] group-hover:scale-105">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <rect x="2" y="4" width="20" height="16" rx="3" fill="url(#video-gradient)"/>
         <path d="M10 8.5V15.5L16 12L10 8.5Z" fill="white"/>
         <defs>
@@ -61,8 +61,8 @@ const FileIcons = {
     </div>
   ),
   audio: (
-    <div className="file-icon audio-icon">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="w-10 h-10 flex items-center justify-center bg-[var(--bg-surface)] rounded-md p-2 transition-all group-hover:bg-[var(--border-light)] group-hover:scale-105">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <circle cx="12" cy="12" r="10" fill="url(#audio-gradient)"/>
         <circle cx="12" cy="12" r="4" fill="white"/>
         <circle cx="12" cy="12" r="1.5" fill="#EC4899"/>
@@ -76,8 +76,8 @@ const FileIcons = {
     </div>
   ),
   archive: (
-    <div className="file-icon archive-icon">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="w-10 h-10 flex items-center justify-center bg-[var(--bg-surface)] rounded-md p-2 transition-all group-hover:bg-[var(--border-light)] group-hover:scale-105">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <path d="M4 4C4 2.89543 4.89543 2 6 2H18C19.1046 2 20 2.89543 20 4V20C20 21.1046 19.1046 22 18 22H6C4.89543 22 4 21.1046 4 20V4Z" fill="url(#archive-gradient)"/>
         <rect x="10" y="2" width="4" height="2" fill="white" fillOpacity="0.5"/>
         <rect x="10" y="6" width="4" height="2" fill="white" fillOpacity="0.5"/>
@@ -93,8 +93,8 @@ const FileIcons = {
     </div>
   ),
   code: (
-    <div className="file-icon code-icon">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="w-10 h-10 flex items-center justify-center bg-[var(--bg-surface)] rounded-md p-2 transition-all group-hover:bg-[var(--border-light)] group-hover:scale-105">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <path d="M6 2C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2H6Z" fill="url(#code-gradient)"/>
         <path d="M9 10L6 13L9 16" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         <path d="M15 10L18 13L15 16" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -109,8 +109,8 @@ const FileIcons = {
     </div>
   ),
   document: (
-    <div className="file-icon document-icon">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="w-10 h-10 flex items-center justify-center bg-[var(--bg-surface)] rounded-md p-2 transition-all group-hover:bg-[var(--border-light)] group-hover:scale-105">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <path d="M6 2C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2H6Z" fill="url(#doc-gradient)"/>
         <path d="M14 2V8H20" fill="#2563EB" fillOpacity="0.3"/>
         <path d="M8 13H16M8 17H13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
@@ -124,8 +124,8 @@ const FileIcons = {
     </div>
   ),
   spreadsheet: (
-    <div className="file-icon spreadsheet-icon">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="w-10 h-10 flex items-center justify-center bg-[var(--bg-surface)] rounded-md p-2 transition-all group-hover:bg-[var(--border-light)] group-hover:scale-105">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <path d="M6 2C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2H6Z" fill="url(#sheet-gradient)"/>
         <rect x="7" y="10" width="4" height="3" fill="white" fillOpacity="0.8"/>
         <rect x="13" y="10" width="4" height="3" fill="white" fillOpacity="0.5"/>
@@ -141,8 +141,8 @@ const FileIcons = {
     </div>
   ),
   default: (
-    <div className="file-icon default-icon">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className="w-10 h-10 flex items-center justify-center bg-[var(--bg-surface)] rounded-md p-2 transition-all group-hover:bg-[var(--border-light)] group-hover:scale-105">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <path d="M6 2C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2H6Z" fill="url(#default-gradient)"/>
         <path d="M14 2V8H20" fill="#6366F1" fillOpacity="0.3"/>
         <defs>
@@ -217,7 +217,7 @@ function DirectoryItem({
   if (viewMode === 'grid') {
     return (
       <div
-        className="grid-item"
+        className="flex flex-col items-center p-4 bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-xl cursor-pointer transition-all relative text-center hover:border-[#00d4ff] hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:-translate-y-1 hover:bg-[var(--bg-surface)] group"
         onClick={() =>
           !(activeContextMenu || isUploading)
             ? handleRowClick(item.isDirectory ? "directory" : "file", itemId)
@@ -226,7 +226,7 @@ function DirectoryItem({
         onContextMenu={(e) => handleContextMenu(e, itemId)}
       >
         <div
-          className="grid-menu-trigger"
+          className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full text-[var(--text-muted)] transition-all z-10 bg-black/10 hover:bg-[var(--border-light)] hover:text-[var(--text-main)] context-menu-trigger"
           onMouseDown={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -240,22 +240,22 @@ function DirectoryItem({
           <BsThreeDotsVertical />
         </div>
         
-        <div className="grid-icon">
+        <div className="w-[60px] h-[60px] mb-4 flex items-center justify-center">
           {item.isDirectory ? FileIcons.folder : renderFileIcon(getFileIcon(item.name))}
         </div>
         
-        <div className="grid-info">
-          <span className="grid-name" title={item.name}>{item.name}</span>
-          {item.size && <span className="grid-meta">{formatFileSize(item.size)}</span>}
+        <div className="w-full">
+          <span className="font-medium text-[0.9rem] text-[var(--text-main)] whitespace-nowrap overflow-hidden text-ellipsis block" title={item.name}>{item.name}</span>
+          {item.size && <span className="text-[0.75rem] text-[var(--text-muted)] mt-1 block">{formatFileSize(item.size)}</span>}
         </div>
 
         {isUploadingItem && (
-          <div className="grid-progress">
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-[var(--border-subtle)] overflow-hidden">
             <div
-              className="grid-progress-bar"
+              className="h-full bg-gradient-to-r from-[#00d4ff] to-[#0072ff]"
               style={{
                 width: `${uploadProgress || 0}%`,
-                backgroundColor: uploadProgress === 100 ? "#039203" : "#007bff",
+                backgroundColor: uploadProgress === 100 ? "#00ff9d" : "",
               }}
             />
           </div>
@@ -282,7 +282,7 @@ function DirectoryItem({
   // List view layout (default)
   return (
     <div
-      className="list-item hoverable-row"
+      className="flex flex-col relative bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-lg cursor-pointer transition-all overflow-hidden hover:border-[#00d4ff] hover:shadow-[0_0_0_1px_#00d4ff,0_10px_15px_-3px_rgba(0,0,0,0.1)] hover:-translate-y-[2px] hover:bg-[var(--bg-surface)] group"
       onClick={(e) => {
         // Don't navigate if clicking on context menu trigger
         if (e.target.closest('.context-menu-trigger')) {
@@ -294,21 +294,21 @@ function DirectoryItem({
       }}
       onContextMenu={(e) => handleContextMenu(e, itemId)}
     >
-      <div className="item-left-container">
-        <div className="item-left">
+      <div className="flex items-center gap-4 flex-1">
+        <div className="flex items-center gap-4 p-4 flex-1">
           {item.isDirectory ? (
             FileIcons.folder
           ) : (
             renderFileIcon(getFileIcon(item.name))
           )}
-          <div className="item-info">
-            <span className="item-name">{item.name}</span>
-            {item.size && <span className="item-meta">{formatFileSize(item.size)}</span>}
+          <div className="flex flex-col gap-0.5">
+            <span className="font-medium text-[var(--text-main)] text-[0.95rem]">{item.name}</span>
+            {item.size && <span className="text-[0.8rem] text-[var(--text-muted)]">{formatFileSize(item.size)}</span>}
           </div>
         </div>
 
         <div
-          className="context-menu-trigger"
+          className="flex items-center justify-center w-9 h-9 cursor-pointer ml-auto text-[var(--text-muted)] rounded-full mr-4 transition-all relative z-10 hover:bg-[var(--border-light)] hover:text-[var(--text-main)] context-menu-trigger"
           onMouseDown={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -324,16 +324,15 @@ function DirectoryItem({
       </div>
 
       {isUploadingItem && (
-        <div className="progress-container">
-          <span className="progress-value">
+        <div className="bg-[var(--border-subtle)] rounded-full mx-6 mb-4 overflow-hidden relative h-6">
+          <span className="absolute text-[0.75rem] font-bold left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white drop-shadow-md z-10">
             {Math.floor(uploadProgress || 0)}%
           </span>
           <div
-            className="progress-bar"
+            className="bg-gradient-to-r from-[#00d4ff] to-[#0072ff] rounded-full h-full transition-all relative"
             style={{
               width: `${uploadProgress || 0}%`,
-              backgroundColor:
-                uploadProgress === 100 ? "#039203" : "#007bff",
+              backgroundColor: uploadProgress === 100 ? "#00ff9d" : "",
             }}
           />
         </div>

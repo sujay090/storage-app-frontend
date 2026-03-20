@@ -19,7 +19,7 @@ function DirectoryList({
   viewMode = 'list',
 }) {
   return (
-    <div className={`directory-list ${viewMode === 'grid' ? 'grid-view' : 'list-view'}`}>
+    <div className={`mt-4 ${viewMode === 'grid' ? 'grid gap-4 grid-cols-[repeat(auto-fill,minmax(120px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(150px,1fr))]' : 'flex flex-col gap-4'}`}>
       {items.map((item) => {
         const itemId = item._id || item.id;
         const uploadProgress = progressMap[itemId] || 0;

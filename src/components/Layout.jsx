@@ -3,10 +3,10 @@ import Sidebar from "./Sidebar";
 
 function Layout() {
   return (
-    <div className="app-layout">
+    <div className="flex h-screen overflow-hidden bg-[var(--bg-app)]">
       <Sidebar />
-      <main className="main-content">
-        <div className="content-scrollable">
+      <main className="flex-1 overflow-hidden">
+        <div className="h-full overflow-y-auto">
           <Outlet />
         </div>
       </main>

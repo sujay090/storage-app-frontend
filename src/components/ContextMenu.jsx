@@ -88,7 +88,7 @@ function ContextMenu({
 
   const menuContent = (
     <div
-      className="context-menu"
+      className="bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-lg shadow-xl p-2 min-w-[160px] animate-in slide-in-from-top-1 backdrop-blur-md context-menu"
       style={{ 
         position: 'fixed',
         top: `${contextMenuPos.y}px`, 
@@ -101,19 +101,19 @@ function ContextMenu({
       {item.isDirectory ? (
         <>
           <div
-            className="context-menu-item"
+            className="flex items-center gap-3 px-3 py-2 cursor-pointer text-[0.85rem] font-medium text-[var(--text-main)] rounded-md transition-colors hover:bg-[var(--bg-surface)] hover:text-[#00d4ff]"
             onClick={(e) => handleClick(e, () => openDetailsModal("directory", itemId))}
           >
             <DetailsIcon /> Details
           </div>
           <div
-            className="context-menu-item"
+            className="flex items-center gap-3 px-3 py-2 cursor-pointer text-[0.85rem] font-medium text-[var(--text-main)] rounded-md transition-colors hover:bg-[var(--bg-surface)] hover:text-[#00d4ff]"
             onClick={(e) => handleClick(e, () => openRenameModal("directory", itemId, item.name))}
           >
             <RenameIcon /> Rename
           </div>
           <div
-            className="context-menu-item danger"
+            className="flex items-center gap-3 px-3 py-2 cursor-pointer text-[0.85rem] font-medium text-red-400 rounded-md transition-colors hover:bg-red-950/30 hover:text-red-300"
             onClick={(e) => handleClick(e, () => handleDeleteDirectory(itemId))}
           >
             <DeleteIcon /> Delete
@@ -121,7 +121,7 @@ function ContextMenu({
         </>
       ) : isUploadingItem && item.isUploading ? (
         <div
-          className="context-menu-item"
+          className="flex items-center gap-3 px-3 py-2 cursor-pointer text-[0.85rem] font-medium text-slate-100 rounded-md transition-colors hover:bg-slate-800 hover:text-[#00d4ff]"
           onClick={(e) => handleClick(e, () => handleCancelUpload(itemId))}
         >
           <CancelIcon /> Cancel
@@ -129,13 +129,13 @@ function ContextMenu({
       ) : (
         <>
           <div 
-            className="context-menu-item"
+            className="flex items-center gap-3 px-3 py-2 cursor-pointer text-[0.85rem] font-medium text-[var(--text-main)] rounded-md transition-colors hover:bg-[var(--bg-surface)] hover:text-[#00d4ff]"
             onClick={(e) => handleClick(e, () => openDetailsModal("file", itemId))}
           >
             <DetailsIcon /> Details
           </div>
           <div
-            className="context-menu-item"
+            className="flex items-center gap-3 px-3 py-2 cursor-pointer text-[0.85rem] font-medium text-[var(--text-main)] rounded-md transition-colors hover:bg-[var(--bg-surface)] hover:text-[#00d4ff]"
             onClick={(e) => {
               e.stopPropagation();
               window.location.href = `${BASE_URL}/file/${itemId}?action=download`;
@@ -145,13 +145,13 @@ function ContextMenu({
             <DownloadIcon /> Download
           </div>
           <div
-            className="context-menu-item"
+            className="flex items-center gap-3 px-3 py-2 cursor-pointer text-[0.85rem] font-medium text-[var(--text-main)] rounded-md transition-colors hover:bg-[var(--bg-surface)] hover:text-[#00d4ff]"
             onClick={(e) => handleClick(e, () => openRenameModal("file", itemId, item.name))}
           >
             <RenameIcon /> Rename
           </div>
           <div
-            className="context-menu-item danger"
+            className="flex items-center gap-3 px-3 py-2 cursor-pointer text-[0.85rem] font-medium text-red-400 rounded-md transition-colors hover:bg-red-950/30 hover:text-red-300"
             onClick={(e) => handleClick(e, () => handleDeleteFile(itemId))}
           >
             <DeleteIcon /> Delete

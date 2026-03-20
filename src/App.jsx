@@ -5,7 +5,6 @@ import Admin from "./Admin";
 import AdminPlan from "./AdminPlan";
 import Plan from "./Plan";
 import PaymentSuccess from "./PaymentSuccess";
-import "./App.css";
 import Login from "./Login";
 import Authprovide from "./authProvider/Authprovide";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -17,6 +16,8 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
+import GoogleDriveCallback from "./pages/GoogleDriveCallback";
+import GoogleDrivePicker from "./pages/GoogleDrivePicker";
 
 const client_id =
   "363103927361-cf7666uhnm26bnr2d1a95qajttkua2ki.apps.googleusercontent.com";
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
     path: "/refund",
     element: <RefundPolicy />,
   },
+  {
+    path: "/google-drive/callback",
+    element: <GoogleDriveCallback />,
+  },
 
   // Protected / App Routes (Wrapped in Layout)
   {
@@ -76,6 +81,10 @@ const router = createBrowserRouter([
             <Admin />
           </Authprovide>
         ),
+      },
+      {
+        path: "/google-drive/picker",
+        element: <GoogleDrivePicker />,
       },
       {
         path: "/admin/plans",

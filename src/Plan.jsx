@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { getPlans } from "./apis/plan.api.js";
-import "./Plan.css";
 import { createSubscription } from "./apis/subscription.api.js";
 import { UserContext } from "./App.jsx";
 
@@ -12,12 +11,12 @@ const CloudLogo = () => (
     height="40"
     viewBox="0 0 24 24"
     fill="none"
-    className="plan-brand-logo"
+    className="drop-shadow-[0_0_10px_rgba(0,212,255,0.4)]"
   >
     <defs>
       <linearGradient id="planGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#6366f1" />
-        <stop offset="100%" stopColor="#8b5cf6" />
+        <stop offset="0%" stopColor="#00d4ff" />
+        <stop offset="100%" stopColor="#0072ff" />
       </linearGradient>
     </defs>
     <path
@@ -181,9 +180,9 @@ const Plan = () => {
 
   if (loading) {
     return (
-      <div className="plan-page">
-        <div className="loading-container">
-          <div className="loading-spinner"></div>
+      <div className="min-h-screen bg-[#111318] text-slate-100 relative overflow-hidden flex flex-col items-center justify-center">
+        <div className="text-center p-10 cursor-not-allowed">
+          <div className="w-14 h-14 border-4 border-slate-800 border-t-[#00d4ff] rounded-full animate-spin mx-auto mb-5"></div>
           <p>Loading plans...</p>
         </div>
       </div>
@@ -192,11 +191,11 @@ const Plan = () => {
 
   if (error) {
     return (
-      <div className="plan-page">
-        <div className="error-container">
-          <h2>Unable to Load Plans</h2>
-          <p>{error}</p>
-          <button onClick={fetchPlans} className="retry-btn">
+      <div className="min-h-screen bg-[#111318] text-slate-100 relative overflow-hidden flex flex-col items-center justify-center">
+        <div className="text-center p-10">
+          <h2 className="text-2xl font-bold mb-4">Unable to Load Plans</h2>
+          <p className="mb-6">{error}</p>
+          <button onClick={fetchPlans} className="bg-gradient-to-r from-[#00d4ff] to-[#0072ff] text-white border-none py-3 px-6 rounded-md font-semibold cursor-pointer">
             Try Again
           </button>
         </div>
@@ -205,93 +204,100 @@ const Plan = () => {
   }
 
   return (
-    <div className="plan-page">
+    <div className="min-h-screen bg-[#111318] text-slate-100 relative overflow-hidden flex flex-col
+      before:content-[''] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_10%_20%,rgba(0,212,255,0.04)_0%,transparent_50%),radial-gradient(circle_at_90%_80%,rgba(0,114,255,0.04)_0%,transparent_50%)] before:pointer-events-none before:z-0">
+      
       {/* Header with Branding */}
-      <header className="plan-header">
-        <Link to="/" className="plan-brand">
+      <header className="flex justify-between items-center py-5 px-8 bg-[#15191e]/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-[100] transition-colors shrink-0 max-md:py-4 max-md:px-6">
+        <Link to="/" className="flex items-center gap-3 text-none">
           <CloudLogo />
-          <span className="plan-brand-name">IronCloud</span>
+          <span className="text-[1.35rem] font-bold text-slate-100 tracking-tight max-[480px]:hidden">IronCloud</span>
         </Link>
-        <Link to="/" className="back-to-dashboard">
+        <Link to="/" className="text-slate-400 no-underline text-[0.9rem] font-medium py-2.5 px-4 rounded-md transition-all border border-transparent hover:text-[#00d4ff] hover:bg-[#1f262e] hover:border-slate-800">
           ← Back to Dashboard
         </Link>
       </header>
 
       {/* Main content wrapper */}
-      <main className="plan-main-content">
-        <div className="plan-hero">
-          <h1 className="plan-title">Choose Your Storage Plan</h1>
-          <p className="plan-subtitle">
-            Select the perfect plan for your storage needs. Upgrade or downgrade
-            anytime.
+      <main className="flex-1 flex flex-col z-[1]">
+        <div className="text-center mb-[72px] pt-[60px] animate-in slide-in-from-bottom-8 fade-in duration-700">
+          <h1 className="text-[3.5rem] font-extrabold mb-5 text-slate-100 leading-[1.15] tracking-tight max-md:text-[2.2rem] max-[480px]:text-[1.8rem]">
+            Choose Your <span className="bg-gradient-to-r from-[#00d4ff] to-[#0072ff] text-transparent bg-clip-text">Storage Plan</span>
+          </h1>
+          <p className="text-[1.3rem] text-slate-400 mx-auto max-w-[650px] leading-[1.8]">
+            Select the perfect plan for your storage needs. Upgrade or downgrade anytime.
           </p>
         </div>
 
         {plans.length === 0 ? (
-          <div className="empty-plans">
-            <div className="empty-icon">📦</div>
-            <h3>No Plans Available</h3>
+          <div className="text-center p-10 text-slate-100">
+            <div className="text-5xl mb-4">📦</div>
+            <h3 className="text-2xl font-bold mb-3">No Plans Available</h3>
             <p>Our team is working on creating storage plans for you.</p>
           </div>
         ) : (
-          <div className="plan-cards">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(340px,1fr))] gap-8 max-w-[1200px] mx-auto z-[1] max-md:px-4 max-md:gap-6">
             {plans.map((plan, index) => (
               <div
                 key={plan._id}
-                className={`plan-card ${index === 1 ? "popular" : ""}`}
+                className={`bg-[#15191e]/80 backdrop-blur-xl border border-slate-800 rounded-xl p-[40px_32px] relative transition-all duration-300 shadow-lg hover:border-[#00d4ff] hover:shadow-[0_0_15px_rgba(0,212,255,0.4),0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)] hover:-translate-y-2
+                  ${index === 1 ? "border-[#00d4ff] shadow-[0_0_15px_rgba(0,212,255,0.4)] scale-[1.03] bg-[#1f262e]/80" : ""}`}
               >
                 {index === 1 && (
-                  <span className="popular-badge">Most Popular</span>
+                  <span className="absolute top-[-16px] left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#00d4ff] to-[#0072ff] text-white text-[0.75rem] font-extrabold py-2 px-5 rounded-full uppercase tracking-[1.5px] shadow-[0_0_15px_rgba(0,212,255,0.4)]">Most Popular</span>
                 )}
 
-                <div className="plan-header">
-                  <h2 className="plan-name">{plan.name}</h2>
-                  <div className="plan-storage">{plan.size} GB</div>
+                <div className="mb-8">
+                  <h2 className="text-[1.6rem] font-extrabold mb-3.5 text-slate-100 tracking-tight">{plan.name}</h2>
+                  <div className="bg-[#00d4ff]/10 text-[#00d4ff] font-bold text-[0.85rem] py-2 px-4 rounded-full inline-block border border-[#00d4ff]/20">{plan.size} GB</div>
                 </div>
 
-                <div className="plan-pricing">
-                  <span className="currency">₹</span>
-                  <span className="amount">{plan.price}</span>
-                  <span className="period">/month</span>
+                <div className="flex justify-center items-baseline gap-1.5 my-8 p-6 bg-[#1f262e] rounded-lg border border-slate-800">
+                  <span className="text-[1.6rem] text-slate-400 font-bold">₹</span>
+                  <span className="text-[3.5rem] font-extrabold text-slate-100 leading-none tracking-tight max-[480px]:text-[2.5rem]">{plan.price}</span>
+                  <span className="text-[1rem] text-slate-400 font-semibold">/month</span>
                 </div>
 
-                <div className="plan-description">
-                  <p>{plan.description}</p>
+                <div className="text-center mb-8 pb-8 border-b border-slate-800">
+                  <p className="text-slate-400 text-[0.95rem] leading-[1.6] m-0">{plan.description}</p>
                 </div>
 
-                <div className="plan-features">
-                  <div className="feature">
-                    <span className="feature-icon">💾</span>
+                <div className="flex flex-col gap-0 mb-9">
+                  <div className="flex items-center gap-4 py-3.5 text-[0.95rem] text-slate-400 border-b border-slate-800 font-medium last:border-b-0">
+                    <span className="text-[1.1rem] w-7 h-7 flex items-center justify-center bg-emerald-500/10 text-emerald-500 rounded-full shrink-0">💾</span>
                     <span>{plan.size} GB Storage Space</span>
                   </div>
-                  <div className="feature">
-                    <span className="feature-icon">🔒</span>
+                  <div className="flex items-center gap-4 py-3.5 text-[0.95rem] text-slate-400 border-b border-slate-800 font-medium last:border-b-0">
+                    <span className="text-[1.1rem] w-7 h-7 flex items-center justify-center bg-emerald-500/10 text-emerald-500 rounded-full shrink-0">🔒</span>
                     <span>Secure File Encryption</span>
                   </div>
-                  <div className="feature">
-                    <span className="feature-icon">📱</span>
+                  <div className="flex items-center gap-4 py-3.5 text-[0.95rem] text-slate-400 border-b border-slate-800 font-medium last:border-b-0">
+                    <span className="text-[1.1rem] w-7 h-7 flex items-center justify-center bg-emerald-500/10 text-emerald-500 rounded-full shrink-0">📱</span>
                     <span>Multi-device Access</span>
                   </div>
-                  <div className="feature">
-                    <span className="feature-icon">🌐</span>
+                  <div className="flex items-center gap-4 py-3.5 text-[0.95rem] text-slate-400 border-b border-slate-800 font-medium last:border-b-0">
+                    <span className="text-[1.1rem] w-7 h-7 flex items-center justify-center bg-emerald-500/10 text-emerald-500 rounded-full shrink-0">🌐</span>
                     <span>24/7 Cloud Access</span>
                   </div>
-                  <div className="feature">
-                    <span className="feature-icon">📞</span>
+                  <div className="flex items-center gap-4 py-3.5 text-[0.95rem] text-slate-400 border-b border-slate-800 font-medium last:border-b-0">
+                    <span className="text-[1.1rem] w-7 h-7 flex items-center justify-center bg-emerald-500/10 text-emerald-500 rounded-full shrink-0">📞</span>
                     <span>Priority Support</span>
                   </div>
                 </div>
 
                 <button
-                  className={`plan-btn ${processingPayment === plan._id ? "processing" : ""}`}
+                  className={`w-full bg-gradient-to-r from-[#00d4ff] to-[#0072ff] text-white border-none rounded-full py-4 px-7 text-[1rem] font-bold cursor-pointer transition-all duration-300 shadow-[0_0_15px_rgba(0,212,255,0.4)] relative overflow-hidden group 
+                    ${processingPayment === plan._id ? "bg-slate-600 bg-none cursor-not-allowed shadow-none" : "hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0"}`}
                   onClick={() => handleGetStarted(plan._id)}
                   disabled={processingPayment === plan._id}
                 >
+                  <div className={`absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-all duration-500 group-hover:left-full ${processingPayment === plan._id ? "hidden" : ""}`} />
+                  
                   {processingPayment === plan._id ? (
-                    <>
-                      <span className="spinner"></span>
+                    <div className="flex items-center justify-center gap-2">
+                      <span className="w-5 h-5 border-2 border-slate-400 border-t-white rounded-full animate-spin"></span>
                       Processing...
-                    </>
+                    </div>
                   ) : (
                     "Get Started"
                   )}
@@ -301,24 +307,24 @@ const Plan = () => {
           </div>
         )}
 
-        <div className="plan-footer">
-          <div className="footer-info">
-            <h3>🔐 All Plans Include</h3>
-            <div className="footer-features">
-              <div className="footer-feature">
-                <span className="check">✅</span>
+        <div className="mt-20 text-center max-w-[800px] w-full mx-auto p-12 bg-[#15191e] rounded-xl shadow-lg border border-slate-800">
+          <div className="mb-0">
+            <h3 className="text-[1.5rem] mb-7 text-slate-100 font-bold">🔐 All Plans Include</h3>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 text-left">
+              <div className="flex items-center gap-2.5 p-3 bg-[#1f262e] rounded-md text-[0.9rem] text-slate-400">
+                <span className="text-[1.1rem]">✅</span>
                 <span>End-to-end encryption</span>
               </div>
-              <div className="footer-feature">
-                <span className="check">✅</span>
+              <div className="flex items-center gap-2.5 p-3 bg-[#1f262e] rounded-md text-[0.9rem] text-slate-400">
+                <span className="text-[1.1rem]">✅</span>
                 <span>Automatic backups</span>
               </div>
-              <div className="footer-feature">
-                <span className="check">✅</span>
+              <div className="flex items-center gap-2.5 p-3 bg-[#1f262e] rounded-md text-[0.9rem] text-slate-400">
+                <span className="text-[1.1rem]">✅</span>
                 <span>File sharing & collaboration</span>
               </div>
-              <div className="footer-feature">
-                <span className="check">✅</span>
+              <div className="flex items-center gap-2.5 p-3 bg-[#1f262e] rounded-md text-[0.9rem] text-slate-400">
+                <span className="text-[1.1rem]">✅</span>
                 <span>30-day money-back guarantee</span>
               </div>
             </div>
@@ -327,13 +333,13 @@ const Plan = () => {
       </main>
 
       {/* Company Footer */}
-      <footer className="plan-page-footer">
-        <div className="footer-content">
+      <footer className="bg-[#1f262e] border-t border-slate-800 p-[40px_24px] mt-auto relative bottom-0">
+        <div className="max-w-[1200px] mx-auto flex justify-between items-center text-slate-400 max-md:flex-col max-md:gap-5 max-md:text-center">
           <p>© 2026 IronCloud Technologies Pvt. Ltd. All rights reserved.</p>
-          <div className="footer-links">
-            <Link to="/terms">Terms of Service</Link>
-            <Link to="/privacy">Privacy Policy</Link>
-            <Link to="/refund">Refund Policy</Link>
+          <div className="flex gap-5 max-md:gap-2.5 max-md:flex-wrap max-md:justify-center">
+            <Link to="/terms" className="text-slate-500 transition-colors hover:text-[#00d4ff] no-underline">Terms of Service</Link>
+            <Link to="/privacy" className="text-slate-500 transition-colors hover:text-[#00d4ff] no-underline">Privacy Policy</Link>
+            <Link to="/refund" className="text-slate-500 transition-colors hover:text-[#00d4ff] no-underline">Refund Policy</Link>
           </div>
         </div>
       </footer>

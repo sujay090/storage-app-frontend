@@ -1,110 +1,118 @@
+@import "tailwindcss";
+
 /* ============================================
    IRONCLOUD DESIGN SYSTEM
    Theme: Dark Iron & Electric Cyan
    ============================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap");
+@layer base {
+  :root {
+    /* --- Global Brand Colors (Electric Cyan) --- */
+    --brand-primary: #00d4ff; 
+    --brand-secondary: #0072ff; 
+    --brand-glow: rgba(0, 212, 255, 0.4);
 
-:root {
-  /* --- Global Brand Colors (Electric Cyan) --- */
-  --brand-primary: #00d4ff; 
-  --brand-secondary: #0072ff; 
-  --brand-glow: rgba(0, 212, 255, 0.4);
+    /* --- Status Colors --- */
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --info: #3b82f6;
 
-  /* --- Status Colors --- */
-  --success: #10b981;
-  --danger: #ef4444;
-  --warning: #f59e0b;
-  --info: #3b82f6;
+    /* --- Radius --- */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
 
-  /* --- Radius --- */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-full: 9999px;
+    /* --- Spacing --- */
+    --space-2: 0.5rem;
+    --space-4: 1rem;
+    --space-6: .6rem;
+    --space-8: 2rem;
 
-  /* --- Spacing --- */
-  --space-2: 0.5rem;
-  --space-4: 1rem;
-  --space-6: .6rem;
-  --space-8: 2rem;
+    /* --- Light Mode (Default) --- */
+    --bg-app: #f3f5f8;
+    --bg-panel: #ffffff;
+    --bg-surface: #f8fafc;
+    
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
 
-  /* --- Light Mode (Default) --- */
-  --bg-app: #f3f5f8;       /* Light blue-grey background */
-  --bg-panel: #ffffff;     /* White panels */
-  --bg-surface: #f8fafc;   /* Slightly off-white surface */
-  
-  --text-main: #1e293b;    /* Slate 800 */
-  --text-muted: #64748b;   /* Slate 500 */
-  --text-dim: #94a3b8;     /* Slate 400 */
+    --border-subtle: #e2e8f0;
+    --border-light: #cbd5e1;
 
-  --border-subtle: #e2e8f0; /* Slate 200 */
-  --border-light: #cbd5e1;  /* Slate 300 */
+    --iron-50: #f8fafc;
+    --iron-100: #f1f5f9;
+    --iron-200: #e2e8f0;
+    --iron-300: #cbd5e1;
+    --iron-400: #94a3b8;
+    --iron-500: #64748b;
+    --iron-600: #475569;
+    --iron-700: #334155;
+    --iron-800: #1e293b;
+    --iron-900: #0f172a;
+    --iron-950: #020617;
 
-  --iron-50: #f8fafc;
-  --iron-100: #f1f5f9;
-  --iron-200: #e2e8f0;
-  --iron-300: #cbd5e1;
-  --iron-400: #94a3b8;
-  --iron-500: #64748b;
-  --iron-600: #475569;
-  --iron-700: #334155;
-  --iron-800: #1e293b;
-  --iron-900: #0f172a;
-  --iron-950: #020617;
+    /* Shadows (Light) */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+    --shadow-glow: 0 0 15px rgba(0, 212, 255, 0.3);
+    
+    --gradient-brand: linear-gradient(135deg, #00d4ff 0%, #0072ff 100%);
+    --gradient-glass: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%);
+  }
 
-  /* Shadows (Light) */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
-  --shadow-glow: 0 0 15px rgba(0, 212, 255, 0.3);
-  
-  --gradient-brand: linear-gradient(135deg, #00d4ff 0%, #0072ff 100%);
-  --gradient-glass: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%);
+  [data-theme='dark'] {
+    /* --- Dark Mode (Iron Theme) --- */
+    --bg-app: #0b0e11;
+    --bg-panel: #15191e;
+    --bg-surface: #1f262e;
+    
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+
+    --border-subtle: #1e293b;
+    --border-light: #334155;
+
+    /* Shadows (Dark) */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.5);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.6);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.7);
+    --shadow-xl: 0 25px 50px -12px rgba(0,0,0,0.9);
+    --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.2);
+
+    --gradient-glass: linear-gradient(180deg, rgba(31, 38, 46, 0.7) 0%, rgba(21, 25, 30, 0.7) 100%);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+  }
 }
 
-[data-theme='dark'] {
-  /* --- Dark Mode (Iron Theme) --- */
-  --bg-app: #0b0e11;       /* Deepest black-blue */
-  --bg-panel: #15191e;     /* Dark panel */
-  --bg-surface: #1f262e;   /* Lighter surface */
-  
-  --text-main: #f1f5f9;    /* Slate 100 */
-  --text-muted: #94a3b8;   /* Slate 400 */
-  --text-dim: #64748b;     /* Slate 500 */
-
-  --border-subtle: #1e293b; /* Slate 800 */
-  --border-light: #334155;  /* Slate 700 */
-
-  /* Shadows (Dark) */
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.5);
-  --shadow-md: 0 4px 8px rgba(0,0,0,0.6);
-  --shadow-lg: 0 10px 30px rgba(0,0,0,0.7);
-  --shadow-xl: 0 25px 50px -12px rgba(0,0,0,0.9);
-  --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.2);
-
-  --gradient-glass: linear-gradient(180deg, rgba(31, 38, 46, 0.7) 0%, rgba(21, 25, 30, 0.7) 100%);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Outfit', 'Inter', sans-serif; /* Tech feel */
-  background-color: var(--bg-app);
-  color: var(--text-main);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* Scrollbar */
+/* Scrollbar - outside @layer so it always applies */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -120,75 +128,37 @@ body {
   background: var(--brand-secondary);
 }
 
-/* Links */
-a {
-  color: var(--brand-primary);
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-a:hover {
-  color: var(--brand-secondary);
-  text-shadow: 0 0 8px var(--brand-glow);
-}
-
-/* Typography Utilities */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 600;
-  color: var(--text-main);
-  letter-spacing: 0.5px;
-}
-
-/* Button & Input Resets/Defaults */
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-input, textarea, select {
-  font-family: inherit;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-main);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
-  outline: none;
-  transition: border-color 0.2s;
-}
-input:focus, textarea:focus, select:focus {
-  border-color: var(--brand-primary);
-  box-shadow: 0 0 0 1px var(--brand-primary);
-}
-
 /* Utility Classes */
-.text-gradient {
-  background: var(--gradient-brand);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
 }
 
-.card {
-  background: var(--bg-panel);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-sm);
+/* Google Sign-In button fix: prevent Tailwind preflight from breaking it */
+/* The Google button container needs its own isolation */
+.google-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-.btn-primary {
-  background: var(--gradient-brand);
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  transition: transform 0.1s, box-shadow 0.2s;
+.google-btn-wrapper iframe {
+  border: none !important;
+  color-scheme: auto !important;
 }
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-glow);
-}
-.btn-primary:active {
-  transform: translateY(0);
+
+/* Undo Tailwind's img/svg reset inside Google elements */
+.google-btn-wrapper img,
+.google-btn-wrapper svg,
+div[id^="g_id_"] img,
+div[id^="g_id_"] svg {
+  display: inline !important;
+  max-width: none !important;
+  height: auto !important;
 }

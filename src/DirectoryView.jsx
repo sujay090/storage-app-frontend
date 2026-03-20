@@ -7,7 +7,6 @@ import DetailsModal from "./components/DetailsModel";
 import DirectoryList from "./components/DirectoryList";
 import Breadcrumb from "./components/Breadcrumb";
 import Toast from "./components/Toast";
-import "./DirectoryView.css";
 
 function DirectoryView() {
   const BASE_URL = import.meta.env.VITE_SERVER_URL;
@@ -265,8 +264,6 @@ function DirectoryView() {
     xhr.send(file);
   }
 
-  // (processUploadQueue removed for single file upload)
-
   /**
    * Cancel an in-progress upload
    */
@@ -462,7 +459,7 @@ function DirectoryView() {
     ...filesList.map((f) => ({ ...f, isDirectory: false })),
   ];
   return (
-    <div className="directory-view">
+    <div className="p-6 max-w-[1400px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 text-[var(--text-main)]">
       {/* Toast notification for errors */}
       {errorMessage &&
         errorMessage !==
@@ -499,26 +496,26 @@ function DirectoryView() {
       />
 
       {/* Breadcrumb Navigation - Hidden on Desktop, Shown on Mobile */}
-      <div className="mobile-breadcrumb">
+      <div className="block md:hidden mb-4">
         <Breadcrumb items={breadcrumb} rootDirId={rootDirId} />
       </div>
 
       {/* View Mode Toggle with Breadcrumb on Desktop */}
-      <div className="view-toggle-bar">
+      <div className="flex flex-row items-center justify-between p-4 my-4 bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-lg gap-4">
         {/* Desktop Breadcrumb - Left side */}
-        <div className="desktop-breadcrumb-toggle">
+        <div className="hidden md:block flex-1 min-w-0">
           <Breadcrumb items={breadcrumb} rootDirId={rootDirId} />
         </div>
 
         {/* Files count and view toggle - Right side */}
-        <div className="toggle-right-section">
-          <span className="files-count">
+        <div className="flex items-center gap-4 shrink-0 w-full md:w-auto justify-between md:justify-end">
+          <span className="text-[0.9rem] text-[var(--text-muted)] whitespace-nowrap">
             {combinedItems.length}{" "}
             {combinedItems.length === 1 ? "item" : "items"}
           </span>
-          <div className="view-toggle">
+          <div className="flex bg-[var(--bg-surface)] rounded p-0.5 border border-[var(--border-subtle)]">
             <button
-              className={`view-btn ${viewMode === "list" ? "active" : ""}`}
+              className={`w-8 h-8 flex items-center justify-center border-none rounded bg-transparent text-[var(--text-muted)] cursor-pointer transition-all hover:text-[var(--text-main)] ${viewMode === "list" ? "!bg-[var(--border-light)] !text-[#00d4ff]" : ""}`}
               title="List View"
               onClick={() => toggleViewMode("list")}
             >
@@ -536,7 +533,7 @@ function DirectoryView() {
               </svg>
             </button>
             <button
-              className={`view-btn ${viewMode === "grid" ? "active" : ""}`}
+              className={`w-8 h-8 flex items-center justify-center border-none rounded bg-transparent text-[var(--text-muted)] cursor-pointer transition-all hover:text-[var(--text-main)] ${viewMode === "grid" ? "!bg-[var(--border-light)] !text-[#00d4ff]" : ""}`}
               title="Grid View"
               onClick={() => toggleViewMode("grid")}
             >
@@ -595,11 +592,11 @@ function DirectoryView() {
         // Check if the error is specifically the "no access" error
         errorMessage ===
         "Directory not found or you do not have access to it!" ? (
-          <p className="no-data-message">
+          <p className="text-center py-16 px-5 text-[var(--text-muted)] bg-[var(--bg-panel)] rounded-xl border-2 border-dashed border-[var(--border-subtle)] mt-6 before:content-['📁'] before:block before:text-5xl before:opacity-50 before:mb-4">
             Directory not found or you do not have access to it!
           </p>
         ) : (
-          <p className="no-data-message">
+          <p className="text-center py-16 px-5 text-[var(--text-muted)] bg-[var(--bg-panel)] rounded-xl border-2 border-dashed border-[var(--border-subtle)] mt-6 before:content-['📁'] before:block before:text-5xl before:opacity-50 before:mb-4">
             This folder is empty. Upload files or create a folder to see some
             data.
           </p>
