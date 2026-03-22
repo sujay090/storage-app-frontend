@@ -52,24 +52,46 @@ const GoogleDrivePicker = () => {
     const [importProgress, setImportProgress] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [selectAll, setSelectAll] = useState(false);
+    
+    // Pagination state
+    const [pageSize, setPageSize] = useState(10);
+    const [nextPageToken, setNextPageToken] = useState(null);
+    const [loadingMore, setLoadingMore] = useState(false);
 
-    // Fetch Drive files on mount
+    // Fetch Drive files on mount or when page size changes
     useEffect(() => {
         fetchFiles();
-    }, []);
+    }, [pageSize]);
 
     const fetchFiles = async () => {
         try {
             setLoading(true);
             setError("");
-            const data = await listDriveFiles();
+            const data = await listDriveFiles(pageSize);
             // Handle both { files: [...] } and direct array response
             const fileList = Array.isArray(data) ? data : (data.files || []);
             setFiles(fileList);
+            setNextPageToken(data.nextPageToken || null);
         } catch (err) {
             setError(err.error || err.message || "Failed to load Google Drive files.");
         } finally {
             setLoading(false);
+        }
+    };
+
+    const loadMoreFiles = async () => {
+        if (!nextPageToken || loadingMore) return;
+        try {
+            setLoadingMore(true);
+            setError("");
+            const data = await listDriveFiles(pageSize, nextPageToken);
+            const fileList = Array.isArray(data) ? data : (data.files || []);
+            setFiles((prev) => [...prev, ...fileList]);
+            setNextPageToken(data.nextPageToken || null);
+        } catch (err) {
+            setError(err.error || err.message || "Failed to load more files.");
+        } finally {
+            setLoadingMore(false);
         }
     };
 
@@ -155,6 +177,19 @@ const GoogleDrivePicker = () => {
                 </div>
 
                 <div className="flex items-center gap-3">
+                    <div className="hidden sm:flex items-center gap-2 mr-2">
+                        <label className="text-sm font-medium text-[var(--text-muted)]">Per page:</label>
+                        <select
+                            value={pageSize}
+                            onChange={(e) => setPageSize(Number(e.target.value))}
+                            className="bg-[var(--bg-panel)] text-[var(--text-main)] border border-[var(--border-subtle)] rounded-lg px-2 py-1.5 focus:outline-none focus:border-[#00d4ff] text-sm"
+                        >
+                            <option value={10}>10</option>
+                            <option value={20}>20</option>
+                            <option value={30}>30</option>
+                            <option value={50}>50</option>
+                        </select>
+                    </div>
                     <button
                         onClick={() => navigate("/")}
                         className="px-4 py-2.5 bg-[var(--bg-surface)] text-[var(--text-muted)] border border-[var(--border-subtle)] rounded-xl text-sm font-medium cursor-pointer transition-all hover:border-[var(--border-light)] hover:text-[var(--text-main)]"
@@ -294,6 +329,26 @@ const GoogleDrivePicker = () => {
                         );
                     })}
             </div>
+
+            {/* Load More */}
+            {!loading && nextPageToken && (
+                <div className="mt-6 flex justify-center">
+                    <button
+                        onClick={loadMoreFiles}
+                        disabled={loadingMore}
+                        className="px-6 py-2.5 bg-[#00d4ff]/10 text-[#00d4ff] border border-[#00d4ff]/30 rounded-xl text-sm font-semibold cursor-pointer transition-all hover:bg-[#00d4ff]/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    >
+                        {loadingMore ? (
+                            <>
+                                <span className="w-4 h-4 border-2 border-[#00d4ff]/30 border-t-[#00d4ff] rounded-full animate-spin" />
+                                Loading...
+                            </>
+                        ) : (
+                            "Load More"
+                        )}
+                    </button>
+                </div>
+            )}
 
             {/* Indeterminate animation keyframes */}
             <style>{`

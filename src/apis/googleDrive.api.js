@@ -15,9 +15,12 @@ export const exchangeAuthCode = async (code) => {
 /**
  * List files from the user's connected Google Drive
  */
-export const listDriveFiles = async () => {
+export const listDriveFiles = async (pageSize = 10, pageToken = "") => {
   try {
-    const response = await api.get("/user/google-drive/files");
+    const params = { pageSize };
+    if (pageToken) params.pageToken = pageToken;
+    
+    const response = await api.get("/user/google-drive/files", { params });
     return response.data;
   } catch (error) {
     throw error.response?.data || error;

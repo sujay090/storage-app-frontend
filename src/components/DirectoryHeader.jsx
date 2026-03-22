@@ -252,15 +252,11 @@ function DirectoryHeader({
                                         </div>
 
                                         <div className="h-[6px] bg-[#0f172a] rounded-full overflow-hidden relative">
-                                            <input
-                                                type="range"
-                                                className="w-full h-full rounded-full appearance-none m-0 p-0 absolute top-0 left-0"
-                                                min={0}
-                                                max={100}
-                                                value={percentUsed}
-                                                readOnly
+                                            <div
+                                                className="h-full rounded-full transition-all duration-300"
                                                 style={{ 
-                                                    background: `linear-gradient(to right, #00d4ff 0%, #00d4ff ${percentUsed}%, transparent ${percentUsed}%, transparent 100%)`
+                                                    width: `${Math.max(0, Math.min(100, percentUsed))}%`,
+                                                    background: `linear-gradient(to right, #00d4ff, #0072ff)`
                                                 }}
                                             />
                                         </div>
