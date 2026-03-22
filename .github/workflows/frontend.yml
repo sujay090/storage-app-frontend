@@ -8,7 +8,7 @@ jobs:
 
     env:
       S3_BUCKET_NAME: storageapp-client-app
-      CLOUDFRONT_DISTRIBUTION_ID: K37PASEZ86Z9YN
+      CLOUDFRONT_DISTRIBUTION_ID: E6DANS9LVEWXY
       VITE_GOOGLE_CLIENT_ID: 363103927361-cf7666uhnm26bnr2d1a95qajttkua2ki.apps.googleusercontent.com
       VITE_BACKEND_BASE_URL: https://app.maxhub.center/api
 
