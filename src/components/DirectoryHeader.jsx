@@ -172,7 +172,7 @@ function DirectoryHeader({
     }, []);
 
     return (
-        <header className="flex flex-wrap items-center text-[var(--text-main)] justify-between p-6 bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-lg shadow-[var(--shadow-md)] mb-6 sticky top-5 z-[90]">
+        <header className="flex flex-wrap items-center text-[var(--text-main)] justify-between p-3 sm:p-4 md:p-6 bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-lg shadow-[var(--shadow-md)] mb-3 sm:mb-6 sticky top-2 sm:top-5 z-[90]">
             {/* Left Side - Brand Only */}
             <div className="flex items-center gap-4">
                 <div className="flex items-center gap-3 shrink-0 max-md:gap-0">
@@ -186,13 +186,13 @@ function DirectoryHeader({
             </div>
 
             {/* Right Side - Actions + User Menu */}
-            <div className="flex items-center gap-2 md:gap-4 ml-auto">
+            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-4 ml-auto">
                 <ConnectWithOtherApp />
                 <ThemeToggle />
 
                 {/* Create Folder (icon button) */}
                 <button
-                    className="hidden sm:flex bg-[var(--bg-surface)] text-[var(--text-muted)] w-9 h-9 md:w-10 md:h-10 rounded-md items-center justify-center text-[1.1rem] transition-all border border-[var(--border-subtle)] hover:bg-[#00d4ff] hover:text-white hover:border-[#00d4ff] hover:shadow-[0_0_10px_rgba(0,212,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex bg-[var(--bg-surface)] text-[var(--text-muted)] w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-md items-center justify-center text-[1rem] sm:text-[1.1rem] transition-all border border-[var(--border-subtle)] hover:bg-[#00d4ff] hover:text-white hover:border-[#00d4ff] hover:shadow-[0_0_10px_rgba(0,212,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
                     title="Create Folder"
                     onClick={onCreateFolderClick}
                     disabled={disabled}
@@ -201,7 +201,7 @@ function DirectoryHeader({
                 </button>
                 {/* Upload Files (icon button) */}
                 <button
-                    className="flex bg-[var(--bg-surface)] text-[var(--text-muted)] w-9 h-9 md:w-10 md:h-10 rounded-md items-center justify-center text-[1.1rem] transition-all border border-[var(--border-subtle)] hover:bg-[#00d4ff] hover:text-white hover:border-[#00d4ff] hover:shadow-[0_0_10px_rgba(0,212,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex bg-[var(--bg-surface)] text-[var(--text-muted)] w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-md items-center justify-center text-[1rem] sm:text-[1.1rem] transition-all border border-[var(--border-subtle)] hover:bg-[#00d4ff] hover:text-white hover:border-[#00d4ff] hover:shadow-[0_0_10px_rgba(0,212,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
                     title="Upload Files"
                     onClick={onUploadFilesClick}
                     disabled={disabled}
@@ -221,7 +221,7 @@ function DirectoryHeader({
                 {/* User Icon & Dropdown Menu */}
                 <div className="relative" ref={userMenuRef}>
                     <button
-                        className="flex bg-[var(--bg-surface)] text-[var(--text-muted)] w-9 h-9 md:w-10 md:h-10 rounded-md items-center justify-center text-[1.1rem] transition-all border border-[var(--border-subtle)] hover:border-[#00d4ff] disabled:opacity-50 disabled:cursor-not-allowed p-0 overflow-hidden"
+                        className="flex bg-[var(--bg-surface)] text-[var(--text-muted)] w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-md items-center justify-center text-[1rem] sm:text-[1.1rem] transition-all border border-[var(--border-subtle)] hover:border-[#00d4ff] disabled:opacity-50 disabled:cursor-not-allowed p-0 overflow-hidden"
                         title="User Menu"
                         onClick={handleUserIconClick}
                     >
@@ -235,7 +235,7 @@ function DirectoryHeader({
                     </button>
 
                     {showUserMenu && (
-                        <div className="absolute top-[50px] right-0 w-[280px] bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-lg shadow-[var(--shadow-lg)] p-4 z-[100] animate-in fade-in slide-in-from-top-2">
+                        <div className="absolute top-[44px] sm:top-[50px] right-0 w-[calc(100vw-32px)] sm:w-[280px] max-w-[280px] bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-lg shadow-[var(--shadow-lg)] p-3 sm:p-4 z-[100] animate-in fade-in slide-in-from-top-2">
                             {loggedIn ? (
                                 <>
                                     {/* Display name & email if logged in */}

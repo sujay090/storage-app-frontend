@@ -6,7 +6,7 @@ function Layout() {
     <div className="flex h-screen overflow-hidden bg-[var(--bg-app)]">
       <Sidebar />
       <main className="flex-1 overflow-hidden">
-        <div className="h-full overflow-y-auto">
+        <div className="h-full overflow-y-auto max-[540px]:pb-20">
           <Outlet />
         </div>
       </main>

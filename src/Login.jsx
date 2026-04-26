@@ -101,7 +101,7 @@ const Login = () => {
       <div className="absolute w-[800px] h-[800px] bg-[radial-gradient(circle,_rgba(0,212,255,0.05)_0%,_transparent_70%)] rounded-full -top-[400px] -right-[200px] animate-[pulse_8s_ease-in-out_infinite]" />
       <div className="absolute w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(0,114,255,0.05)_0%,_transparent_70%)] rounded-full -bottom-[300px] -left-[200px] animate-[pulse_10s_ease-in-out_infinite_reverse]" />
 
-      <div className="bg-[#15191e]/80 backdrop-blur-xl p-8 sm:p-12 border border-slate-800 rounded-3xl shadow-2xl w-full max-w-[440px] relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
+      <div className="bg-[#15191e]/80 backdrop-blur-xl p-6 sm:p-8 md:p-12 border border-slate-800 rounded-3xl shadow-2xl w-full max-w-[440px] relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
         
         {/* Brand Header */}
         <div className="text-center mb-8 flex flex-col items-center">
@@ -195,7 +195,7 @@ const Login = () => {
             shape="pill"
             theme="filled_blue"
             text="continue_with"
-            width="380"
+            width="300"
             useOneTap
             onError={() => {
               setServerError("Google login failed. Please try again.");

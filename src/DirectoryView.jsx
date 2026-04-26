@@ -459,7 +459,7 @@ function DirectoryView() {
     ...filesList.map((f) => ({ ...f, isDirectory: false })),
   ];
   return (
-    <div className="p-6 max-w-[1400px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 text-[var(--text-main)]">
+    <div className="p-3 sm:p-6 max-w-[1400px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 text-[var(--text-main)]">
       {/* Toast notification for errors */}
       {errorMessage &&
         errorMessage !==
@@ -496,12 +496,12 @@ function DirectoryView() {
       />
 
       {/* Breadcrumb Navigation - Hidden on Desktop, Shown on Mobile */}
-      <div className="block md:hidden mb-4">
+      <div className="block md:hidden mb-2">
         <Breadcrumb items={breadcrumb} rootDirId={rootDirId} />
       </div>
 
       {/* View Mode Toggle with Breadcrumb on Desktop */}
-      <div className="flex flex-row items-center justify-between p-4 my-4 bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-lg gap-4">
+      <div className="flex flex-row items-center justify-between p-2.5 sm:p-4 my-2 sm:my-4 bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-lg gap-2 sm:gap-4">
         {/* Desktop Breadcrumb - Left side */}
         <div className="hidden md:block flex-1 min-w-0">
           <Breadcrumb items={breadcrumb} rootDirId={rootDirId} />
@@ -592,11 +592,11 @@ function DirectoryView() {
         // Check if the error is specifically the "no access" error
         errorMessage ===
         "Directory not found or you do not have access to it!" ? (
-          <p className="text-center py-16 px-5 text-[var(--text-muted)] bg-[var(--bg-panel)] rounded-xl border-2 border-dashed border-[var(--border-subtle)] mt-6 before:content-['📁'] before:block before:text-5xl before:opacity-50 before:mb-4">
+          <p className="text-center py-10 sm:py-16 px-4 sm:px-5 text-[var(--text-muted)] bg-[var(--bg-panel)] rounded-xl border-2 border-dashed border-[var(--border-subtle)] mt-4 sm:mt-6 before:content-['📁'] before:block before:text-4xl sm:before:text-5xl before:opacity-50 before:mb-4">
             Directory not found or you do not have access to it!
           </p>
         ) : (
-          <p className="text-center py-16 px-5 text-[var(--text-muted)] bg-[var(--bg-panel)] rounded-xl border-2 border-dashed border-[var(--border-subtle)] mt-6 before:content-['📁'] before:block before:text-5xl before:opacity-50 before:mb-4">
+          <p className="text-center py-10 sm:py-16 px-4 sm:px-5 text-[var(--text-muted)] bg-[var(--bg-panel)] rounded-xl border-2 border-dashed border-[var(--border-subtle)] mt-4 sm:mt-6 before:content-['📁'] before:block before:text-4xl sm:before:text-5xl before:opacity-50 before:mb-4">
             This folder is empty. Upload files or create a folder to see some
             data.
           </p>

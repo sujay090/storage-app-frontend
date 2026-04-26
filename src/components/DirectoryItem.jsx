@@ -217,7 +217,7 @@ function DirectoryItem({
   if (viewMode === 'grid') {
     return (
       <div
-        className="flex flex-col items-center p-4 bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-xl cursor-pointer transition-all relative text-center hover:border-[#00d4ff] hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:-translate-y-1 hover:bg-[var(--bg-surface)] group"
+        className="flex flex-col items-center p-2.5 sm:p-4 bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-xl cursor-pointer transition-all relative text-center hover:border-[#00d4ff] hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:-translate-y-1 hover:bg-[var(--bg-surface)] group"
         onClick={() =>
           !(activeContextMenu || isUploading)
             ? handleRowClick(item.isDirectory ? "directory" : "file", itemId)
@@ -226,7 +226,7 @@ function DirectoryItem({
         onContextMenu={(e) => handleContextMenu(e, itemId)}
       >
         <div
-          className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-full text-[var(--text-muted)] transition-all z-10 bg-black/10 hover:bg-[var(--border-light)] hover:text-[var(--text-main)] context-menu-trigger"
+          className="absolute top-2 right-2 w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full text-[var(--text-muted)] transition-all z-10 bg-black/10 hover:bg-[var(--border-light)] hover:text-[var(--text-main)] context-menu-trigger"
           onMouseDown={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -240,13 +240,13 @@ function DirectoryItem({
           <BsThreeDotsVertical />
         </div>
         
-        <div className="w-[60px] h-[60px] mb-4 flex items-center justify-center">
+        <div className="w-[40px] h-[40px] sm:w-[60px] sm:h-[60px] mb-2 sm:mb-4 flex items-center justify-center">
           {item.isDirectory ? FileIcons.folder : renderFileIcon(getFileIcon(item.name))}
         </div>
         
         <div className="w-full">
-          <span className="font-medium text-[0.9rem] text-[var(--text-main)] whitespace-nowrap overflow-hidden text-ellipsis block" title={item.name}>{item.name}</span>
-          {item.size && <span className="text-[0.75rem] text-[var(--text-muted)] mt-1 block">{formatFileSize(item.size)}</span>}
+          <span className="font-medium text-[0.75rem] sm:text-[0.9rem] text-[var(--text-main)] whitespace-nowrap overflow-hidden text-ellipsis block" title={item.name}>{item.name}</span>
+          {item.size && <span className="text-[0.65rem] sm:text-[0.75rem] text-[var(--text-muted)] mt-1 block">{formatFileSize(item.size)}</span>}
         </div>
 
         {isUploadingItem && (
@@ -294,21 +294,21 @@ function DirectoryItem({
       }}
       onContextMenu={(e) => handleContextMenu(e, itemId)}
     >
-      <div className="flex items-center gap-4 flex-1">
-        <div className="flex items-center gap-4 p-4 flex-1">
+      <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
+        <div className="flex items-center gap-2 sm:gap-4 p-3 sm:p-4 flex-1 min-w-0">
           {item.isDirectory ? (
             FileIcons.folder
           ) : (
             renderFileIcon(getFileIcon(item.name))
           )}
-          <div className="flex flex-col gap-0.5">
-            <span className="font-medium text-[var(--text-main)] text-[0.95rem]">{item.name}</span>
+          <div className="flex flex-col gap-0.5 min-w-0 flex-1">
+            <span className="font-medium text-[var(--text-main)] text-[0.95rem] truncate">{item.name}</span>
             {item.size && <span className="text-[0.8rem] text-[var(--text-muted)]">{formatFileSize(item.size)}</span>}
           </div>
         </div>
 
         <div
-          className="flex items-center justify-center w-9 h-9 cursor-pointer ml-auto text-[var(--text-muted)] rounded-full mr-4 transition-all relative z-10 hover:bg-[var(--border-light)] hover:text-[var(--text-main)] context-menu-trigger"
+          className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 cursor-pointer ml-auto text-[var(--text-muted)] rounded-full mr-2 sm:mr-4 transition-all relative z-10 hover:bg-[var(--border-light)] hover:text-[var(--text-main)] context-menu-trigger shrink-0"
           onMouseDown={(e) => {
             e.preventDefault();
             e.stopPropagation();

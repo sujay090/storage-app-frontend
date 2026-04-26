@@ -198,10 +198,10 @@ const Register = () => {
       <div className="absolute w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(0,114,255,0.05)_0%,_transparent_70%)] rounded-full -bottom-[200px] -left-[200px] animate-[pulse_10s_ease-in-out_infinite_reverse]" />
 
       <div className="bg-[#15191e]/80 backdrop-blur-xl border border-slate-800 rounded-3xl shadow-2xl w-full max-w-[500px] p-0 relative z-10 overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700">
-        <header className="px-9 py-10 pb-7 text-center bg-gradient-to-br from-[#1f262e] to-[#15191e] border-b border-slate-800">
+        <header className="px-6 sm:px-9 py-8 sm:py-10 pb-6 sm:pb-7 text-center bg-gradient-to-br from-[#1f262e] to-[#15191e] border-b border-slate-800">
           <CloudLogo />
           <h1 className="text-2xl font-extrabold text-slate-100 m-0 tracking-tight">IronCloud</h1>
-          <h2 className="text-3xl mt-4 font-extrabold text-slate-100 m-0 mb-2 leading-tight tracking-tight">Create your account</h2>
+          <h2 className="text-2xl sm:text-3xl mt-4 font-extrabold text-slate-100 m-0 mb-2 leading-tight tracking-tight">Create your account</h2>
           <p className="text-base text-slate-400 m-0 leading-relaxed">Join us and start storing your files securely</p>
         </header>
 
@@ -387,7 +387,7 @@ const Register = () => {
               shape="pill"
               theme="filled_blue"
               text="continue_with"
-              width="380"
+              width="300"
               useOneTap
               onError={() => {
                 setServerError("Google login failed. Please try again.");

@@ -16,7 +16,7 @@ function Breadcrumb({ items, rootDirId }) {
   if (!items || items.length === 0) return null;
 
   return (
-    <div className="flex items-center gap-1.5 p-4 md:px-6 md:py-4 bg-[var(--bg-panel)] rounded-lg mb-6 text-[0.85rem] md:text-[0.9rem] overflow-x-auto whitespace-nowrap border border-[var(--border-subtle)] shadow-sm mt-4 md:mt-8
+    <div className="flex items-center gap-1.5 p-3 sm:p-4 md:px-6 md:py-4 bg-[var(--bg-panel)] rounded-lg mb-3 sm:mb-6 text-[0.8rem] sm:text-[0.85rem] md:text-[0.9rem] overflow-x-auto whitespace-nowrap border border-[var(--border-subtle)] shadow-sm mt-2 sm:mt-4 md:mt-8
       scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-700 hover:scrollbar-thumb-slate-600">
       {items.map((item, index) => {
         const isLast = index === items.length - 1;

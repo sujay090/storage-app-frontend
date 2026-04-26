@@ -162,3 +162,11 @@ div[id^="g_id_"] svg {
   max-width: none !important;
   height: auto !important;
 }
+
+/* Mobile bottom navigation bar */
+@media (max-width: 540px) {
+  aside {
+    background-color: var(--bg-surface) !important;
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}

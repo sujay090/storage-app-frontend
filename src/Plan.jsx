@@ -224,7 +224,7 @@ const Plan = () => {
           <h1 className="text-[3.5rem] font-extrabold mb-5 text-slate-100 leading-[1.15] tracking-tight max-md:text-[2.2rem] max-[480px]:text-[1.8rem]">
             Choose Your <span className="bg-gradient-to-r from-[#00d4ff] to-[#0072ff] text-transparent bg-clip-text">Storage Plan</span>
           </h1>
-          <p className="text-[1.3rem] text-slate-400 mx-auto max-w-[650px] leading-[1.8]">
+          <p className="text-base sm:text-[1.3rem] text-slate-400 mx-auto max-w-[650px] leading-[1.8] px-4 sm:px-0">
             Select the perfect plan for your storage needs. Upgrade or downgrade anytime.
           </p>
         </div>
@@ -236,11 +236,11 @@ const Plan = () => {
             <p>Our team is working on creating storage plans for you.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(340px,1fr))] gap-8 max-w-[1200px] mx-auto z-[1] max-md:px-4 max-md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 sm:gap-8 max-w-[1200px] mx-auto z-[1] px-4 md:px-4">
             {plans.map((plan, index) => (
               <div
                 key={plan._id}
-                className={`bg-[#15191e]/80 backdrop-blur-xl border border-slate-800 rounded-xl p-[40px_32px] relative transition-all duration-300 shadow-lg hover:border-[#00d4ff] hover:shadow-[0_0_15px_rgba(0,212,255,0.4),0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)] hover:-translate-y-2
+                className={`bg-[#15191e]/80 backdrop-blur-xl border border-slate-800 rounded-xl p-6 sm:p-[40px_32px] relative transition-all duration-300 shadow-lg hover:border-[#00d4ff] hover:shadow-[0_0_15px_rgba(0,212,255,0.4),0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)] hover:-translate-y-2
                   ${index === 1 ? "border-[#00d4ff] shadow-[0_0_15px_rgba(0,212,255,0.4)] scale-[1.03] bg-[#1f262e]/80" : ""}`}
               >
                 {index === 1 && (
@@ -307,7 +307,7 @@ const Plan = () => {
           </div>
         )}
 
-        <div className="mt-20 text-center max-w-[800px] w-full mx-auto p-12 bg-[#15191e] rounded-xl shadow-lg border border-slate-800">
+        <div className="mt-12 sm:mt-20 text-center max-w-[800px] w-full mx-auto p-6 sm:p-12 bg-[#15191e] rounded-xl shadow-lg border border-slate-800 mx-4 sm:mx-auto">
           <div className="mb-0">
             <h3 className="text-[1.5rem] mb-7 text-slate-100 font-bold">🔐 All Plans Include</h3>
             <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 text-left">
