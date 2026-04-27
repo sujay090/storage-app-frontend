@@ -71,10 +71,6 @@ const router = createBrowserRouter([
         element: <DirectoryView />,
       },
       {
-        path: "/plans",
-        element: <Plan />,
-      },
-      {
         path: "/admin",
         element: (
           <Authprovide>
@@ -96,6 +92,10 @@ const router = createBrowserRouter([
       },
       // Fallback for missing routes inside app could go here
     ],
+  },
+  {
+    path: "/plans",
+    element: <Plan />,
   },
 ]);
 

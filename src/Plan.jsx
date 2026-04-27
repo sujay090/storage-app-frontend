@@ -241,7 +241,7 @@ const Plan = () => {
               <div
                 key={plan._id}
                 className={`bg-[#15191e]/80 backdrop-blur-xl border border-slate-800 rounded-xl p-6 sm:p-[40px_32px] relative transition-all duration-300 shadow-lg hover:border-[#00d4ff] hover:shadow-[0_0_15px_rgba(0,212,255,0.4),0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)] hover:-translate-y-2
-                  ${index === 1 ? "border-[#00d4ff] shadow-[0_0_15px_rgba(0,212,255,0.4)] scale-[1.03] bg-[#1f262e]/80" : ""}`}
+                  ${index === 1 ? "border-[#00d4ff] shadow-[0_0_15px_rgba(0,212,255,0.4)] md:scale-[1.03] bg-[#1f262e]/80" : ""}`}
               >
                 {index === 1 && (
                   <span className="absolute top-[-16px] left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#00d4ff] to-[#0072ff] text-white text-[0.75rem] font-extrabold py-2 px-5 rounded-full uppercase tracking-[1.5px] shadow-[0_0_15px_rgba(0,212,255,0.4)]">Most Popular</span>
@@ -307,7 +307,7 @@ const Plan = () => {
           </div>
         )}
 
-        <div className="mt-12 sm:mt-20 text-center max-w-[800px] w-full mx-auto p-6 sm:p-12 bg-[#15191e] rounded-xl shadow-lg border border-slate-800 mx-4 sm:mx-auto">
+        <div className="mt-12 sm:mt-20 text-center max-w-[800px] w-[calc(100%-2rem)] sm:w-full mx-auto p-6 sm:p-12 bg-[#15191e] rounded-xl shadow-lg border border-slate-800">
           <div className="mb-0">
             <h3 className="text-[1.5rem] mb-7 text-slate-100 font-bold">🔐 All Plans Include</h3>
             <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 text-left">

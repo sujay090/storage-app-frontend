@@ -9,7 +9,7 @@ function Sidebar() {
   return (
     <aside className="w-[260px] bg-[var(--bg-panel)] border-r border-[var(--border-subtle)] flex flex-col p-6 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] z-50 h-[100vh] sticky top-0
       max-md:w-[80px] max-md:p-[16px_8px]
-      max-[540px]:w-full max-[540px]:h-auto max-[540px]:fixed max-[540px]:bottom-0 max-[540px]:top-auto max-[540px]:flex-row max-[540px]:justify-around max-[540px]:py-3 max-[540px]:px-6 max-[540px]:border-r-0 max-[540px]:border-t max-[540px]:border-t-[#334155] max-[540px]:z-[1000] max-[540px]:backdrop-blur-xl max-[540px]:shadow-[0_-4px_20px_rgba(0,0,0,0.4)]"
+      max-[540px]:w-full max-[540px]:h-auto max-[540px]:fixed max-[540px]:bottom-0 max-[540px]:left-0 max-[540px]:top-auto max-[540px]:flex-row max-[540px]:justify-around max-[540px]:py-3 max-[540px]:px-6 max-[540px]:border-r-0 max-[540px]:border-t max-[540px]:border-t-[#334155] max-[540px]:z-[1000] max-[540px]:backdrop-blur-xl max-[540px]:shadow-[0_-4px_20px_rgba(0,0,0,0.4)]"
     >
       <div className="flex items-center gap-4 mb-8 px-2 max-md:justify-center max-md:p-0 max-md:mb-6 max-[540px]:hidden">
         <div className="w-10 h-10 bg-gradient-to-br from-[#00d4ff] to-[#0072ff] rounded-md flex items-center justify-center shadow-[0_0_15px_rgba(0,212,255,0.4)] shrink-0">
